@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Duolingo — самый нескучный способ изучать языки, шахматы и другие предметы.">
+  <title>Duolingo — изучайте язык бесплатно</title>
+  <style>
+    @font-face {
+      font-family: "Duolingo Sans";
+      src: url("assets/duolingo-sans.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Feather";
+      src: url("assets/feather.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap;
+    }
+    :root {
+      --owl: #58cc02;
+      --owl-dark: #46a302;
+      --eel: #4b4b4b;
+      --wolf: #777777;
+      --swan: #e5e5e5;
+      --macaw: #1cb0f6;
+      --manta: #042c60;
+      --deep-martin: #100f3e;
+      --turtle-light: #a5ed6e;
+      --sea-sponge: #d7ffb8;
+      --max-width: 988px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--eel);
+      font-family: "Duolingo Sans", Arial, sans-serif;
+      font-size: 17px;
+      line-height: 20px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    button, input { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; }
+    .skip-link {
+      position: absolute; left: 12px; top: -60px; z-index: 100;
+      padding: 12px 16px; border-radius: 10px; background: var(--owl); color: white;
+    }
+    .skip-link:focus { top: 12px; }
+
+    /* The source header changes from its language selector to a compact CTA on scroll. */
+    .topbar {
+      position: fixed; z-index: 50; inset: 0 0 auto; height: 70px;
+      background: rgba(255,255,255,.985); border-bottom: 1px solid #e5e5e5;
+      transition: box-shadow .18s ease;
+    }
+    .topbar.scrolled { box-shadow: 0 1px 3px rgba(0,0,0,.025); }
+    .topbar-inner {
+      width: min(988px, calc(100% - 48px)); height: 100%; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand-logo { width: 179px; height: 42px; object-fit: contain; }
+    .topbar-actions { display: flex; align-items: center; justify-content: flex-end; min-width: 194px; }
+    .site-language-wrap { position: relative; }
+    .site-language {
+      display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 0; border: 0; border-radius: 8px; background: transparent;
+      color: #a9a9a9; font-size: 15px; font-weight: 800; line-height: 1.15;
+      letter-spacing: .45px; white-space: nowrap; cursor: pointer;
+    }
+    .site-language:hover { color: #777; }
+    .down-chevron {
+      width: 10px; height: 10px; margin: -4px 2px 0 1px;
+      border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+      transform: rotate(45deg); flex: 0 0 auto;
+    }
+    .site-language-menu {
+      position: absolute; top: calc(100% + 13px); right: 0; z-index: 55;
+      min-width: 190px; max-height: 330px; overflow-y: auto; padding: 7px;
+      border: 1px solid var(--swan); border-radius: 14px; background: white;
+      box-shadow: 0 12px 32px rgba(0,0,0,.12); display: none;
+    }
+    .site-language-menu.open { display: block; }
+    .site-language-menu button {
+      display: block; width: 100%; padding: 10px 12px; border: 0; border-radius: 8px;
+      background: white; color: #777; text-align: left; font-size: 13px; font-weight: 700; cursor: pointer;
+    }
+    .site-language-menu button:hover { background: #f4f9ef; color: var(--owl-dark); }
+    .topbar-start { display: none !important; width: 101px !important; min-height: 44px !important; height: 44px; padding: 0 8px !important; font-size: 14px !important; }
+    .topbar.scrolled .site-language-wrap { display: none; }
+    .topbar.scrolled .topbar-start { display: inline-flex !important; }
+
+    .duo-button {
+      min-height: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center;
+      padding: 0 16px; border-radius: 12px; font-family: "Duolingo Sans", Arial, sans-serif;
+      font-size: 14px; font-weight: 800; line-height: 1; letter-spacing: .9px;
+      text-transform: uppercase; cursor: pointer; white-space: nowrap;
+      transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+    }
+    .duo-button:hover { filter: brightness(1.035); transform: translateY(-1px); }
+    .duo-button:active { transform: translateY(2px); box-shadow: none; }
+    .duo-button-primary {
+      color: #fff; background: var(--owl); border: 0; border-bottom: 4px solid var(--owl-dark);
+      box-shadow: 0 1px 0 var(--owl-dark);
+    }
+    .duo-button-secondary {
+      color: var(--macaw); background: #fff; border: 2px solid var(--swan);
+      border-bottom-width: 4px; box-shadow: 0 1px 0 #dedede;
+    }
+
+    /* First screen and the in-flow-at-the-foot language rail. */
+    .hero-stage {
+      position: relative; width: 100%; height: 900px; min-height: 900px;
+      overflow: hidden; background: #fff;
+    }
+    .hero-grid {
+      position: absolute; top: 70px; left: 50%; transform: translateX(-50%);
+      width: min(988px, calc(100% - 48px)); height: 750px; padding: 48px 0;
+      display: flex; align-items: center; justify-content: flex-end; gap: 80px;
+    }
+    .hero-art {
+      position: relative; flex: 0 0 424px; width: 424px; height: 424px;
+      margin-right: -65px; display: grid; place-items: center; isolation: isolate;
+    }
+    .hero-fallback { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: contain; transition: opacity .28s ease; }
+    .hero-lottie { position: absolute; inset: 0; z-index: 2; opacity: 0; pointer-events: none; transition: opacity .32s ease; }
+    .hero-lottie .lottie-host { width: 100%; height: 100%; }
+    .hero-lottie .lottie-host svg { width: 100% !important; height: 100% !important; }
+    .hero-art.is-loaded .hero-lottie { opacity: 1; }
+    .hero-art.is-loaded .hero-fallback { opacity: 0; }
+    .hero-copy {
+      flex: 0 0 480px; width: 480px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+    }
+    .hero-copy h1 {
+      width: 100%; max-width: 480px; margin: 0 0 40px; color: var(--eel);
+      font-family: "Duolingo Sans", Arial, sans-serif; font-size: 32px; font-weight: 700;
+      line-height: normal; letter-spacing: normal;
+    }
+    .hero-buttons { width: 330px; max-width: 100%; display: flex; flex-direction: column; gap: 12px; }
+    .hero-buttons .duo-button { width: 100%; }
+
+    .language-dock {
+      position: absolute; z-index: 4; left: 0; right: 0; bottom: 0; height: 80px;
+      border-top: 2px solid #e5e5e5; border-bottom: 2px solid #e5e5e5; background: #fff;
+    }
+    .dock-inner {
+      width: min(1090px, calc(100% - 40px)); height: 76px; margin: 0 auto;
+      display: flex; align-items: center; gap: 30px;
+    }
+    .dock-arrow {
+      width: 14px; height: 34px; flex: 0 0 14px; display: grid; place-items: center;
+      padding: 0; border: 0; background: transparent; color: #b8b8b8; cursor: pointer;
+    }
+    .dock-arrow:hover { color: #777; }
+    .dock-arrow svg { width: 13px; height: 13px; }
+    .course-list {
+      min-width: 0; flex: 1; display: flex; align-items: center; justify-content: flex-start;
+      gap: 23px; overflow-x: auto; scrollbar-width: none;
+    }
+    .course-list::-webkit-scrollbar { display: none; }
+    .course-item {
+      flex: 0 0 auto; min-height: 0; display: inline-flex; align-items: center; gap: 0;
+      padding: 0; border: 0; background: transparent; color: #858585; cursor: pointer;
+    }
+    .course-flag { width: 36px; height: 27.7714px; flex: 0 0 auto; margin-right: 10px; }
+    .course-name { font-size: 15px; font-weight: 700; line-height: 20px; letter-spacing: .8px; text-transform: uppercase; white-space: nowrap; }
+    .course-item:hover .course-name { color: var(--eel); }
+    .course-item[aria-current="true"] .course-name { color: #767676; }
+    .course-item:focus-visible, .dock-arrow:focus-visible, .site-language:focus-visible,
+    .duo-button:focus-visible { outline: 3px solid rgba(28,176,246,.55); outline-offset: 3px; }
+
+    /* The four feature rows mirror the live page's 530px art rhythm. */
+    .marketing-content { background: #fff; }
+    .features {
+      width: min(988px, calc(100% - 48px)); margin: 0 auto; padding: 96px 0;
+    }
+    .feature-row { position: relative; width: 100%; height: 530px; }
+    .feature-art {
+      position: absolute; top: 0; width: 530px; height: 530px; margin: 0;
+      aspect-ratio: 1 / 1; display: block; overflow: visible;
+    }
+    .feature-copy {
+      position: absolute; top: 50%; transform: translateY(-50%); display: flex;
+      flex-direction: column; align-items: flex-start; gap: 24px;
+    }
+    .feature-copy h2, .test-copy h2 {
+      width: fit-content; max-width: 503px; margin: 0; color: var(--owl);
+      font-family: "Feather", "Duolingo Sans", Arial, sans-serif; font-size: 48px;
+      font-weight: 700; line-height: normal; letter-spacing: normal;
+    }
+    .feature-copy p, .test-copy p {
+      max-width: 473px; margin: 0; color: var(--wolf); font-size: 17px;
+      font-weight: 500; line-height: 24px;
+    }
+    .inline-link { color: var(--macaw); font-weight: 800; }
+    .inline-link:hover { text-decoration: underline; }
+    .feature-row:nth-child(1) .feature-art { left: 604px; }
+    .feature-row:nth-child(1) .feature-copy { left: 0; width: 503px; }
+    .feature-row:nth-child(2) .feature-art { left: -116px; }
+    .feature-row:nth-child(2) .feature-copy { left: 515px; width: 473px; }
+    .feature-row:nth-child(3) .feature-art { left: 574px; }
+    .feature-row:nth-child(3) .feature-copy { left: 0; width: 473px; }
+    .feature-row:nth-child(4) .feature-art { left: -146px; }
+    .feature-row:nth-child(4) .feature-copy { left: 485px; width: 503px; }
+    .lottie-visual { position: relative; overflow: visible; }
+    .lottie-visual .lottie-fallback, .lottie-visual .lottie-host {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+    }
+    .lottie-visual .lottie-fallback { z-index: 1; object-fit: contain; transition: opacity .32s ease; }
+    .lottie-visual .lottie-host { z-index: 2; }
+    .lottie-visual .lottie-host svg { display: block !important; width: 100% !important; height: 100% !important; overflow: visible; }
+    .lottie-visual.is-loaded .lottie-fallback { opacity: 0; }
+
+    /* App promo: keep the same pale-blue field as the live animated scene. */
+    .app-section { position: relative; height: 1393px; min-height: 1393px; overflow: hidden; background: #ddf4ff; }
+    .app-grid { position: relative; width: 100%; max-width: 1728px; height: 100%; margin: 0 auto; }
+    .app-copy {
+      position: absolute; z-index: 3; top: 140px; left: 50%; transform: translateX(-50%);
+      width: 100%; display: flex; flex-direction: column; align-items: center; gap: 48px; text-align: center;
+    }
+    .app-copy h2 {
+      width: 583px; max-width: calc(100vw - 32px); margin: 0; color: var(--manta);
+      font-family: "Feather", "Duolingo Sans", Arial, sans-serif; font-size: 64px;
+      font-weight: 700; line-height: normal; letter-spacing: -.02em;
+    }
+    .store-row { display: flex; align-items: center; justify-content: center; gap: 24px; }
+    .store-badge {
+      height: 63px; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 9.5px 14px; border: 2px solid #e5e5e5; border-bottom-width: 4px; border-radius: 12px;
+      background: #fff; color: #4b4b4b; transition: transform .12s ease, background .12s ease;
+    }
+    .store-badge:hover { transform: translateY(-1px); background: #fafafa; }
+    .store-badge-app { width: 153px; }
+    .store-badge-google { width: 168px; }
+    .store-badge svg { width: 34px; height: 34px; flex: 0 0 auto; transform: translateY(-2px); }
+    .store-badge > span { display: block; text-align: left; white-space: nowrap; font-size: 17px; font-weight: 700; line-height: 20px; transform: translateY(-.5px); }
+    .store-badge small { display: block; font-family: "Duolingo Sans", Arial, sans-serif; font-size: 14px; font-weight: 700; line-height: 17px; }
+    .store-badge strong { display: block; font-size: 17px; line-height: 20px; font-weight: 700; }
+    .app-art {
+      position: absolute; z-index: 0; left: calc(50% - 860px); top: 175px;
+      width: 2000px; height: auto; aspect-ratio: 4100 / 2300; pointer-events: none;
+    }
+    .app-art .lottie-fallback { object-fit: contain; }
+
+    /* Super is a full-bleed navy interlude, not a card. */
+    .super-section { height: 900px; overflow: hidden; background: var(--deep-martin); }
+    .super-inner {
+      width: min(988px, calc(100% - 48px)); height: 100%; margin: 0 auto; padding: 185px 0;
+      display: flex; align-items: center; justify-content: flex-end; gap: 40px;
+    }
+    .super-art { position: relative; flex: 0 0 530px; width: 530px; height: 530px; }
+    .super-copy { flex: 0 0 418px; width: 418px; display: flex; flex-direction: column; align-items: center; gap: 52px; }
+    .super-logo-picture { display: block; width: 418px; max-width: 100%; }
+    .super-logo { display: block; width: 100%; height: auto; margin: 0; }
+    .super-button {
+      width: 199.4px; height: 50px; min-height: 50px; border: 0; border-bottom: 4px solid #a2a0b4;
+      background: #fff; color: #000437; font-size: 14px; letter-spacing: .8px; box-shadow: 0 1px 0 #a2a0b4;
+    }
+
+    /* English Test: white, open, and aligned to the same artwork grid. */
+    .test-section { padding: 96px 0; background: #fff; }
+    .test-panel { position: relative; width: min(988px, calc(100% - 48px)); height: 530px; margin: 0 auto; }
+    .test-copy {
+      position: absolute; top: 50%; left: 0; transform: translateY(-50%); width: 473px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 24px;
+    }
+    .test-copy h2 { max-width: 503px; }
+    .test-link { width: 330px; }
+    .test-visual { position: absolute; top: 0; left: 574px; width: 530px; height: 530px; }
+
+    /* The closing artwork rises behind the CTA, then meets the green footer. */
+    .closing-cta { display: flex; align-items: flex-end; width: 100%; position: relative; overflow: visible; background: #fff; }
+    .closing-inner {
+      position: relative; width: 100%; max-width: 1440px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; overflow: visible;
+    }
+    .closing-copy {
+      position: relative; z-index: 3; width: 100%; max-width: 1440px; padding: 40px 0 0;
+      margin-bottom: -10.3591160221%; display: flex; flex-direction: column; align-items: center; gap: 48px;
+    }
+    .closing-copy h2 {
+      width: 583px; max-width: calc(100vw - 32px); margin: 0; color: var(--owl);
+      font-family: "Feather", "Duolingo Sans", Arial, sans-serif; font-size: 64px;
+      font-weight: 700; line-height: normal; letter-spacing: -.02em; text-align: center;
+    }
+    .closing-button { width: 330px; max-width: calc(100vw - 40px); }
+    .closing-art { position: relative; flex: none; width: 100%; height: auto; aspect-ratio: 1448 / 708; pointer-events: none; }
+    .closing-art .lottie-fallback { object-fit: fill; }
+    .closing-art .lottie-host svg { overflow: hidden !important; }
+    @media (min-width: 768px) {
+      .closing-art .lottie-fallback, .closing-art .lottie-host { inset: auto 0 0; height: 134.75%; }
+    }
+    .closing-art .closing-hover-host { z-index: 3; opacity: 0; transition: opacity .16s ease; }
+    .closing-art.is-hovering .closing-hover-host { opacity: 1; }
+    .closing-green-base {
+      position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; width: 100%;
+      aspect-ratio: 1448 / 80; background: var(--owl); pointer-events: none;
+    }
+
+    /* Green sitemap footer and the original long language list. */
+    .footer { background: var(--owl); color: #fff; }
+    .footer-columns {
+      width: min(988px, calc(100% - 48px)); min-height: 590px; margin: 0 auto;
+      padding: 96px 0 64px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-rows: minmax(430px, auto); gap: 24px; overflow-wrap: anywhere;
+    }
+    .footer-column { display: flex; flex-direction: column; gap: 32px; min-width: 0; }
+    .footer-group h3 {
+      margin: 0 0 12px; color: #fff; font-size: 19px; font-weight: 700; line-height: 1.4;
+    }
+    .footer-group ul { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .footer-group li { margin: 0; padding: 0; }
+    .footer-group a { color: var(--turtle-light); font-size: 15px; font-weight: 700; line-height: 22px; }
+    .footer-group a:hover { color: #fff; text-decoration: underline; }
+    .footer-divider { width: 100%; height: 2px; margin: 0; border: 0; background: rgba(255,255,255,.28); }
+    .footer-languages {
+      width: min(988px, calc(100% - 48px)); min-height: 234px; margin: 0 auto;
+      padding: 40px 0 64px; box-sizing: border-box;
+    }
+    .footer-languages h3 { margin: 0 0 16px; color: var(--sea-sponge); font-size: 15px; font-weight: 700; line-height: 22px; }
+    .language-links { display: block; margin: -8px -12px; padding: 0; list-style: none; font-size: 17px; line-height: 20px; }
+    .language-links li { display: inline-block; margin: 8px 12px; }
+    .language-links a { color: var(--turtle-light); font-size: 13px; font-weight: 700; line-height: 16px; }
+    .language-links a:hover { color: #fff; text-decoration: underline; }
+
+    /* Demo-only sign-in and sign-up dialog. */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 80; display: none; align-items: center; justify-content: center;
+      padding: 18px; background: rgba(23,34,20,.52);
+    }
+    .modal-backdrop.open { display: flex; animation: fade-in .16s ease-out; }
+    .modal {
+      position: relative; width: min(100%, 430px); max-height: 92vh; overflow: auto; padding: 29px;
+      border: 1px solid #eee; border-radius: 23px; background: #fff;
+      box-shadow: 0 22px 70px rgba(0,0,0,.24); animation: pop-in .18s ease-out;
+    }
+    .modal-close {
+      position: absolute; right: 15px; top: 14px; width: 36px; height: 36px; display: grid; place-items: center;
+      border: 0; border-radius: 10px; background: #f4f4f4; color: #777; font-size: 23px; cursor: pointer;
+    }
+    .modal-brand { display: flex; justify-content: center; margin-bottom: 16px; }
+    .modal-brand img { width: 145px; height: auto; }
+    .modal h2 { margin: 0 24px 8px; text-align: center; font-size: 25px; line-height: 1.25; }
+    .modal-intro { margin: 0 auto 21px; max-width: 310px; text-align: center; color: #888; font-size: 14px; line-height: 1.45; }
+    .form-label { display: block; margin: 13px 0 7px; color: #777; font-size: 11px; font-weight: 800; letter-spacing: .55px; text-transform: uppercase; }
+    .form-input { width: 100%; padding: 13px 14px; border: 2px solid #e5e5e5; border-radius: 11px; outline: 0; background: #fafafa; color: #4b4b4b; font-family: Arial, sans-serif; font-size: 15px; }
+    .form-input:focus { border-color: var(--macaw); background: #fff; }
+    .modal-submit { width: 100%; margin-top: 20px; }
+    .modal-note { margin: 14px 0 0; color: #999; text-align: center; font: 11px/1.5 Arial, sans-serif; }
+    .modal-switch { margin: 16px 0 0; color: #888; text-align: center; font-size: 13px; line-height: 1.5; }
+    .modal-switch button { border: 0; padding: 0; background: transparent; color: var(--macaw); font-weight: 800; cursor: pointer; }
+    .toast {
+      position: fixed; z-index: 100; left: 50%; bottom: 28px; width: max-content; max-width: calc(100% - 32px);
+      padding: 13px 17px; border-radius: 12px; background: #3b3b3b; color: white;
+      font: 13px/1.4 Arial, sans-serif; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,.18);
+      opacity: 0; transform: translate(-50%, 16px); pointer-events: none; transition: opacity .2s, transform .2s;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    body.modal-open { overflow: hidden; }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes pop-in { from { opacity: 0; transform: translateY(6px) scale(.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+    @media (max-width: 1079px) {
+      .hero-grid { width: min(900px, calc(100% - 64px)); gap: 34px; }
+      .hero-art { flex-basis: min(42vw, 424px); width: min(42vw, 424px); height: min(42vw, 424px); margin-right: -24px; }
+      .hero-copy { flex-basis: min(44vw, 480px); width: min(44vw, 480px); }
+      .hero-copy h1 { font-size: 30px; }
+      .features { width: min(900px, calc(100% - 64px)); }
+      .feature-row { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+      .feature-art { position: relative; inset: auto !important; flex: 0 0 42vw; width: 42vw; height: 42vw; max-width: 452px; max-height: 452px; }
+      .feature-copy { position: relative; inset: auto !important; top: auto; transform: none; width: auto !important; flex: 1 1 auto; }
+      .feature-row:nth-child(even) { flex-direction: row-reverse; }
+      .feature-copy h2 { font-size: 42px; }
+      .feature-copy p { max-width: 100%; }
+      .super-inner { width: min(900px, calc(100% - 64px)); gap: 32px; }
+      .super-art { flex-basis: 46vw; width: 46vw; height: 46vw; max-width: 452px; max-height: 452px; }
+      .super-copy { flex-basis: 40%; width: 40%; }
+      .super-logo { width: 100%; }
+      .test-panel { width: min(900px, calc(100% - 64px)); }
+      .test-visual { left: auto; right: -56px; width: min(42vw, 452px); height: min(42vw, 452px); top: 39px; }
+      .test-copy { width: 50%; }
+      .footer-columns { grid-template-columns: repeat(3, minmax(0,1fr)); grid-template-rows: auto; min-height: auto; }
+      .footer-column { min-height: 260px; }
+    }
+    @media (max-width: 767px) {
+      body { font-size: 16px; }
+      .topbar { height: 72px; border: 0; border-bottom: 2px solid transparent; background: #fff; box-shadow: none; transition: transform .4s cubic-bezier(.22,1,.36,1), border-color .3s; }
+      .topbar.scrolled { box-shadow: none; border-bottom-color: var(--swan); }
+      .topbar.mobile-hidden { transform: translateY(-100%); }
+      .topbar-inner { width: 100%; justify-content: center; }
+      .topbar-inner > a { display: block; height: 38px; transform: translateY(-3px); }
+      .brand-logo { width: 161px; height: 38px; }
+      .topbar-actions { display: none; }
+      .hero-stage { height: 100vh; min-height: 844px; padding: 0; overflow: hidden; }
+      .hero-grid { position: absolute; inset: 0; transform: none; width: 100%; height: 100%; margin: 0; padding: 0; display: block; }
+      .hero-art { position: absolute; top: 156px; left: 50%; transform: translateX(-50%); width: min(70vw, 273px); height: min(70vw, 273px); margin: 0; }
+      .hero-copy {
+        position: absolute; top: 429.5px; left: 15px; transform: none; width: calc(100% - 30px); height: 394.5px;
+        display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 20px;
+      }
+      .hero-copy h1 { flex: 1 1 0%; width: min(345px, 100%); max-width: 345px; margin: 10px 0 0; font-size: 32px; line-height: normal; letter-spacing: normal; }
+      .hero-copy h1 br { display: none; }
+      .hero-buttons { flex: 0 0 112px; width: min(330px, 100%); gap: 12px; }
+      .duo-button { min-height: 50px; height: 50px; font-size: 15px; }
+      .language-dock { display: none; }
+      .features { width: calc(100% - 30px); padding: 96px 0; }
+      .feature-row, .feature-row:nth-child(even) {
+        height: auto; min-height: 0; display: flex; flex-direction: column; align-items: center;
+        gap: 32px; padding: 0; margin-bottom: 96px; text-align: center;
+      }
+      .feature-row:last-child { margin-bottom: 0; }
+      .feature-art { order: 2; flex: none; width: min(345px, calc(100vw - 45px)); height: min(345px, calc(100vw - 45px)); max-width: none; max-height: none; }
+      .feature-copy { order: 1; width: 100% !important; align-items: center; gap: 24px; }
+      .feature-copy h2, .test-copy h2 { max-width: 340px; width: fit-content; font-size: 36px; text-align: center; }
+      .feature-copy p, .test-copy p { width: 330px; max-width: 100%; font-size: 17px; line-height: 24px; text-align: center; }
+      .app-section { height: auto; min-height: 1000.2px; }
+      .app-grid { height: auto; min-height: 1000.2px; padding: 96px 15px 0; }
+      .app-copy { position: relative; top: auto; left: auto; transform: none; width: 100%; padding: 0; gap: 32px; }
+      .app-copy h2 { width: 330px; max-width: 100%; font-size: 36px; line-height: normal; }
+      .store-row { flex-direction: column; gap: 16px; }
+      .store-badge-app, .store-badge-google { width: 168px; }
+      .app-art { position: absolute; top: auto; bottom: 0; left: calc(50% - 300px); transform: none; width: 1200px; }
+      .super-section { height: 100vh; min-height: 844px; padding: 0; }
+      .super-inner { width: 100%; height: 100%; padding: 134.5px 0 0; flex-direction: column; justify-content: flex-start; gap: 24px; }
+      .super-art { flex: none; width: min(345px, calc(100vw - 45px)); height: min(345px, calc(100vw - 45px)); }
+      .super-copy { flex: none; width: 100%; align-items: center; gap: 52px; }
+      .super-logo-picture { width: min(100%, 339px); }
+      .super-button { width: 330px; }
+      .test-section { padding: 96px 0; }
+      .test-panel { width: calc(100% - 30px); height: auto; display: flex; flex-direction: column; align-items: center; gap: 32px; }
+      .test-copy { position: relative; top: auto; left: auto; transform: none; width: 100%; align-items: center; gap: 24px; }
+      .test-link { width: min(100%, 330px); }
+      .test-visual { position: relative; top: auto; right: auto; left: auto; width: min(345px, calc(100vw - 45px)); height: min(345px, calc(100vw - 45px)); }
+      .closing-cta { height: 576.3px; min-height: 576.3px; }
+      .closing-inner { height: 100%; }
+      .closing-copy { position: absolute; top: 40px; left: 0; width: 100%; padding: 0 30px; margin: 0; gap: 48px; }
+      .closing-copy h2 { width: 330px; max-width: 100%; font-size: 36px; line-height: normal; }
+      .closing-button { width: min(100%,330px); }
+      .closing-art { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 696px; height: 458.5px; aspect-ratio: auto; }
+      .footer-columns { width: calc(100% - 15px); min-height: 0; grid-template-columns: 216px; grid-template-rows: auto; gap: 32px; padding: 96px 32px 64px; }
+      .footer-column { width: 216px; min-height: 0; gap: 32px; }
+      .footer-languages { width: calc(100% - 15px); min-height: 0; padding: 40px 32px 64px; }
+      .modal { padding: 25px 21px; }
+      .toast { bottom: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+  <header class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <a href="#top" aria-label="Duolingo — на главную"><img class="brand-logo" src="assets/logo.svg" alt="Duolingo"></a>
+      <div class="topbar-actions">
+        <div class="site-language-wrap">
+          <button class="site-language" id="siteLanguageButton" type="button" aria-haspopup="listbox" aria-expanded="false">
+            <span id="siteLanguageLabel">ЯЗЫК САЙТА: РУССКИЙ</span><span class="down-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="site-language-menu" id="siteLanguageMenu" role="listbox" aria-label="Язык сайта">
+            <button type="button" role="option" aria-selected="true" data-site-language="РУССКИЙ">Русский</button>
+            <button type="button" role="option" aria-selected="false" data-site-language="ENGLISH">English</button>
+            <button type="button" role="option" aria-selected="false" data-site-language="ESPAÑOL">Español</button>
+            <button type="button" role="option" aria-selected="false" data-site-language="FRANÇAIS">Français</button>
+            <button type="button" role="option" aria-selected="false" data-site-language="DEUTSCH">Deutsch</button>
+          </div>
+        </div>
+        <button class="duo-button duo-button-primary topbar-start" type="button" data-auth="register">Начать</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero-stage" id="top" aria-label="Добро пожаловать в Duolingo">
+      <div class="hero-grid">
+        <div class="hero-art" id="heroArt" role="img" aria-label="Совёнок Дуо и персонажи учатся вместе">
+          <img class="hero-fallback" src="assets/live/hero-placeholder.png" alt="" fetchpriority="high">
+          <div class="hero-lottie" id="heroLottie" aria-hidden="true"><div class="lottie-host"></div></div>
+        </div>
+        <div class="hero-copy">
+          <h1>Самый нескучный способ изучать<br>языки, шахматы и другие<br>предметы!</h1>
+          <div class="hero-buttons">
+            <button class="duo-button duo-button-primary" type="button" data-auth="register">Начать</button>
+            <button class="duo-button duo-button-secondary" type="button" data-auth="login">У меня уже есть аккаунт</button>
+          </div>
+        </div>
+      </div>
+    <div class="language-dock" aria-label="Популярные курсы">
+      <div class="dock-inner">
+        <button class="dock-arrow" type="button" data-scroll-courses="left" aria-label="Предыдущие курсы"><svg viewBox="0 0 16 16" fill="none"><path d="m10 3-5 5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="course-list" id="courseList">
+          <button class="course-item" type="button" data-course="Английский" aria-current="true" aria-label="Английский">
+            <img class="course-flag" src="assets/courses/flag-english.svg" alt="">
+            <span class="course-name">английский</span>
+          </button>
+          <button class="course-item" type="button" data-course="Шахматы" aria-label="Шахматы">
+            <img class="course-flag" src="assets/courses/icon-chess.svg" alt="">
+            <span class="course-name">Шахматы</span>
+          </button>
+          <button class="course-item" type="button" data-course="Испанский" aria-label="Испанский">
+            <img class="course-flag" src="assets/courses/flag-spanish.svg" alt="">
+            <span class="course-name">испанский</span>
+          </button>
+          <button class="course-item" type="button" data-course="Французский" aria-label="Французский">
+            <img class="course-flag" src="assets/courses/flag-french.svg" alt="">
+            <span class="course-name">французский</span>
+          </button>
+          <button class="course-item" type="button" data-course="Немецкий" aria-label="Немецкий">
+            <img class="course-flag" src="assets/courses/flag-german.svg" alt="">
+            <span class="course-name">немецкий</span>
+          </button>
+          <button class="course-item" type="button" data-course="Итальянский" aria-label="Итальянский">
+            <img class="course-flag" src="assets/courses/flag-italian.svg" alt="">
+            <span class="course-name">итальянский</span>
+          </button>
+          <button class="course-item" type="button" data-course="Португальский" aria-label="Португальский">
+            <img class="course-flag" src="assets/courses/flag-portuguese.svg" alt="">
+            <span class="course-name">португальский</span>
+          </button>
+          <button class="course-item" type="button" data-course="Японский" aria-label="Японский">
+            <img class="course-flag" src="assets/courses/flag-japanese.svg" alt="">
+            <span class="course-name">японский</span>
+          </button>
+          <button class="course-item" type="button" data-course="Корейский" aria-label="Корейский">
+            <img class="course-flag" src="assets/courses/flag-korean.svg" alt="">
+            <span class="course-name">корейский</span>
+          </button>
+          <button class="course-item" type="button" data-course="Китайский упрощённый" aria-label="Китайский упрощённый">
+            <img class="course-flag" src="assets/courses/flag-chinese.svg" alt="">
+            <span class="course-name">китайский (упрощённый)</span>
+          </button>
+        </div>
+        <button class="dock-arrow" type="button" data-scroll-courses="right" aria-label="Следующие курсы"><svg viewBox="0 0 16 16" fill="none"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+    </section>
+    <div class="marketing-content">
+      <section class="features" id="features" aria-label="Почему Duolingo работает">
+        <article class="feature-row">
+          <div class="feature-art lottie-visual" data-lottie="assets/lottie/live/feature-effective-aea5.json" data-segment="291,450">
+            <img class="lottie-fallback" src="assets/live/feature-effective.svg" alt="" loading="lazy"><div class="lottie-host" aria-hidden="true"></div>
+          </div>
+          <div class="feature-copy">
+            <h2>Бесплатно. Весело. Эффективно.</h2>
+            <p>Учиться с Duolingo весело и интересно. Зарабатывайте очки за правильные ответы, открывайте новые материалы и развивайте навыки разговорной речи. Наши короткие уроки действительно работают, и <a class="inline-link" href="https://www.duolingo.com/efficacy" target="_blank" rel="noreferrer">мы можем это доказать.</a></p>
+          </div>
+        </article>
+        <article class="feature-row">
+          <div class="feature-art lottie-visual" data-lottie="assets/lottie/live/feature-science-71b0.json" data-segment="190,532">
+            <img class="lottie-fallback" src="assets/live/feature-science.svg" alt="" loading="lazy"><div class="lottie-host" aria-hidden="true"></div>
+          </div>
+          <div class="feature-copy">
+            <h2>Научный подход</h2>
+            <p>Уникальный метод обучения и увлекательные материалы: исследования показывают, что наши курсы эффективно развивают навыки чтения, письма, понимания на слух и устной речи!</p>
+          </div>
+        </article>
+        <article class="feature-row">
+          <div class="feature-art lottie-visual" data-lottie="assets/lottie/live/feature-motivation-82f2.json" data-segment="200,300">
+            <img class="lottie-fallback" src="assets/live/feature-motivation.svg" alt="" loading="lazy"><div class="lottie-host" aria-hidden="true"></div>
+          </div>
+          <div class="feature-copy">
+            <h2>Стимул к учёбе</h2>
+            <p>Игровой подход с забавными заданиями и напоминаниями от нашего талисмана — совёнка Duo помогает быстро превратить ежедневные занятия в привычку.</p>
+          </div>
+        </article>
+        <article class="feature-row">
+          <div class="feature-art lottie-visual" data-lottie="assets/lottie/live/feature-individual-e97b.json" data-segment="188,376">
+            <img class="lottie-fallback" src="assets/live/feature-individual.svg" alt="" loading="lazy"><div class="lottie-host" aria-hidden="true"></div>
+          </div>
+          <div class="feature-copy">
+            <h2>Индивидуальное обучение</h2>
+            <p>Наши уроки объединяют в себе умные алгоритмы искусственного интеллекта и новейшие достижения лингвистики. Сложность и темп обучения подбираются для каждого пользователя индивидуально!</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="app-section" id="app" aria-label="Duolingo всегда с вами">
+        <div class="app-grid">
+          <div class="app-copy">
+            <h2>Учитесь в любое время и в любом месте</h2>
+            <div class="store-row">
+              <a class="store-badge store-badge-app" href="https://apps.apple.com/ru/app/duolingo-language-lessons/id570060128" target="_blank" rel="noreferrer" aria-label="Скачать Duolingo в App Store">
+                <svg viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"><title>badge-app-store</title><path d="M26.9039 19.1188C26.9363 16.611 28.2528 14.2945 30.3922 12.981C29.0364 11.0473 26.8469 9.86522 24.4843 9.7914C21.9986 9.53084 19.5888 11.2768 18.3221 11.2768C17.0309 11.2768 15.0807 9.81727 12.9806 9.86042C10.2174 9.94957 7.7038 11.4804 6.35946 13.8929C3.49663 18.8428 5.63205 26.1174 8.3744 30.1184C9.74645 32.0776 11.35 34.2661 13.4482 34.1885C15.5014 34.1035 16.2682 32.881 18.7466 32.881C21.202 32.881 21.9215 34.1885 24.0623 34.1392C26.2655 34.1035 27.6536 32.1713 28.9775 30.1935C29.9633 28.7975 30.7219 27.2546 31.2252 25.622C28.6084 24.5167 26.907 21.9562 26.9039 19.1188V19.1188Z" fill="currentColor"></path><path d="M22.8604 7.16005C24.0617 5.71991 24.6535 3.86887 24.5102 2C22.6749 2.1925 20.9796 3.06846 19.7621 4.45334C18.5599 5.81971 17.9508 7.60728 18.0691 9.42235C19.929 9.44147 21.6949 8.60765 22.8604 7.16005V7.16005Z" fill="currentColor"></path></svg>
+                <span><small>Скачать в</small><strong>App Store</strong></span>
+              </a>
+              <a class="store-badge store-badge-google" href="https://play.google.com/store/apps/details?id=com.duolingo" target="_blank" rel="noreferrer" aria-label="Duolingo в Google Play">
+                <svg viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"><title>badge-app-store</title><path fill-rule="evenodd" clip-rule="evenodd" d="M3.80942 4.3203C3.80942 4.09554 3.82731 3.88521 3.86151 3.69016L17.8617 18.4703L3.83906 33.2741C3.81952 33.1218 3.80942 32.961 3.80942 32.792V4.3203ZM5.35237 35.0876C5.86758 35.1708 6.47838 35.0454 7.13188 34.6805L24.1811 25.1417L19.4773 20.1758L5.35237 35.0876ZM21.0928 18.4703L26.2937 23.9609L32.63 20.4164C34.4567 19.393 34.4567 17.7194 32.63 16.6985L26.1861 13.0933L21.0928 18.4703ZM24.0742 11.9117L7.13188 2.43299C6.60625 2.13818 6.10808 1.99915 5.66613 1.99915C5.60892 1.99915 5.55264 2.00146 5.49734 2.00606L19.4773 16.7648L24.0742 11.9117Z" fill="currentColor"></path></svg>
+                <span><small>Доступно в</small><strong>Google Play</strong></span>
+              </a>
+            </div>
+          </div>
+          <div class="app-art lottie-visual" data-lottie="assets/lottie/live/app-main-c16e.json" data-alt-lottie="assets/lottie/live/app-alt-c02b.json">
+            <img class="lottie-fallback" src="assets/live/app-placeholder.svg" alt="" loading="lazy"><div class="lottie-host" aria-hidden="true"></div><div class="lottie-host app-alt-host" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="super-section" id="super" aria-label="Super Duolingo">
+        <div class="super-inner">
+          <div class="super-art lottie-visual" data-lottie="assets/lottie/live/super-904f.json" data-segment="35,156">
+            <img class="lottie-fallback" src="assets/live/super-placeholder.svg" alt="" loading="lazy"><div class="lottie-host" aria-hidden="true"></div>
+          </div>
+          <div class="super-copy">
+            <picture class="super-logo-picture">
+              <source media="(min-width: 768px)" srcset="assets/live/super-wordmark.svg" width="605" height="91">
+              <img class="super-logo" src="assets/super-duo.svg" alt="Super Duolingo" width="339" height="55">
+            </picture>
+            <button class="duo-button super-button" type="button" data-auth="register">1 неделя бесплатно</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="test-section" id="test" aria-label="Duolingo English Test">
+        <div class="test-panel">
+          <div class="test-copy">
+            <h2>duolingo english test</h2>
+            <p>Представляем удобный, быстрый и недорогой тест на знание английского, основанный на новейших исследованиях в областях искусственного интеллекта и оценки владения языком. Теперь каждый может пройти надёжный тест в комфортной обстановке и в удобное время.</p>
+            <a class="duo-button duo-button-secondary test-link" href="https://englishtest.duolingo.com/ru" target="_blank" rel="noreferrer">Получить сертификат</a>
+          </div>
+          <div class="test-visual lottie-visual" data-lottie="assets/lottie/live/test-2c6d.json" data-segment="0,115">
+            <img class="lottie-fallback" src="assets/live/test-placeholder.svg" alt="" loading="lazy"><div class="lottie-host" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing-cta" id="closing" aria-label="Начните учиться с Duolingo">
+        <div class="closing-inner">
+          <div class="closing-copy">
+            <h2>Изучайте языки с Duolingo</h2>
+            <button class="duo-button duo-button-primary closing-button" type="button" data-auth="register">Начать</button>
+          </div>
+          <div class="closing-art lottie-visual" data-lottie="assets/lottie/live/closing-main-9b9c.json" data-segment="0,110">
+            <img class="lottie-fallback" src="assets/live/closing-placeholder.svg" alt="" loading="lazy"><div class="lottie-host" aria-hidden="true"></div><div class="lottie-host closing-hover-host" aria-hidden="true"></div>
+            <div class="closing-green-base" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-columns">
+      <div class="footer-column">
+        <div class="footer-group"><h3>О нас</h3><ul>
+          <li><a href="#features">Курсы</a></li><li><a href="#features">Миссия</a></li><li><a href="#features">Методология</a></li><li><a href="#features">Эффективность</a></li><li><a href="#features">Ценности Duolingo</a></li><li><a href="#features">Исследования</a></li><li><a href="#features">Вакансии</a></li><li><a href="#features">Магазин</a></li><li><a href="#features">СМИ</a></li><li><a href="#features">Инвесторы</a></li><li><a href="#features">Связь с нами</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-column">
+        <div class="footer-group"><h3>Продукты</h3><ul>
+          <li><a href="#top">Duolingo</a></li><li><a href="#features">Duolingo for Schools</a></li><li><a href="#test">Duolingo English Test</a></li><li><a href="#features">Подкаст</a></li><li><a href="#features">Duolingo for Business</a></li><li><a href="#super">Super Duolingo</a></li><li><a href="#super">Super Duolingo в подарок</a></li><li><a href="#super">Duolingo Max</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-column">
+        <div class="footer-group"><h3>Приложение</h3><ul>
+          <li><a href="https://play.google.com/store/apps/details?id=com.duolingo">Duolingo для Android</a></li><li><a href="https://apps.apple.com/ru/app/duolingo-language-lessons/id570060128">Duolingo для iOS</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-column">
+        <div class="footer-group"><h3>Помощь и поддержка</h3><ul>
+          <li><a href="#top">Справочный центр</a></li><li><a href="#features">Duolingo for Schools</a></li><li><a href="#test">Duolingo English Test</a></li><li><a href="#top">Статус</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-column">
+        <div class="footer-group"><h3>Условия предоставления услуг</h3><ul>
+          <li><a href="#top">Правила сообщества</a></li><li><a href="#top">Условия</a></li><li><a href="#top">Конфиденциальность</a></li>
+        </ul></div>
+        <div class="footer-group"><h3>Мы в соцсетях</h3><ul>
+          <li><a href="#top">Блог</a></li><li><a href="#top">Instagram</a></li><li><a href="#top">TikTok</a></li><li><a href="#top">Twitter</a></li><li><a href="#top">YouTube</a></li><li><a href="#top">LinkedIn</a></li>
+        </ul></div>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-languages">
+      <h3>Язык сайта:</h3>
+      <ul class="language-links" aria-label="Языки сайта">
+        <li><a href="#top" lang="ar">العربية</a></li><li><a href="#top" lang="bn">বাংলা</a></li><li><a href="#top" lang="cs">Čeština</a></li><li><a href="#top" lang="de">Deutsch</a></li><li><a href="#top" lang="el">Ελληνικά</a></li><li><a href="#top" lang="en">English</a></li><li><a href="#top" lang="es">Español</a></li><li><a href="#top" lang="fr">Français</a></li><li><a href="#top" lang="hi">हिंदी</a></li><li><a href="#top" lang="hu">Magyar</a></li><li><a href="#top" lang="id">Bahasa Indonesia</a></li><li><a href="#top" lang="it">Italiano</a></li><li><a href="#top" lang="ja">日本語</a></li><li><a href="#top" lang="kn">ಕನ್ನಡ</a></li><li><a href="#top" lang="ko">한국어</a></li><li><a href="#top" lang="mr">मराठी</a></li><li><a href="#top" lang="nl">Nederlands</a></li><li><a href="#top" lang="pa">ਪੰਜਾਬੀ</a></li><li><a href="#top" lang="pl">Polski</a></li><li><a href="#top" lang="pt">Português</a></li><li><a href="#top" lang="ro">Română</a></li><li><a href="#top" lang="ru">Русский</a></li><li><a href="#top" lang="sv">svenska</a></li><li><a href="#top" lang="ta">தமிழ்</a></li><li><a href="#top" lang="te">తెలుగు</a></li><li><a href="#top" lang="th">ภาษาไทย</a></li><li><a href="#top" lang="tl">Tagalog</a></li><li><a href="#top" lang="tr">Türkçe</a></li><li><a href="#top" lang="uk">Українською</a></li><li><a href="#top" lang="ur">اُردُو</a></li><li><a href="#top" lang="vi">Tiếng Việt</a></li><li><a href="#top" lang="zh">中文</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Закрыть">×</button>
+      <div class="modal-brand"><img src="assets/logo.svg" alt="Duolingo"></div>
+      <h2 id="modalTitle">Создайте аккаунт</h2>
+      <p class="modal-intro" id="modalIntro">Начните изучать язык бесплатно.</p>
+      <form id="authForm">
+        <div id="nameFieldWrap"><label class="form-label" for="userName">Как вас зовут?</label><input class="form-input" id="userName" name="name" placeholder="Ваше имя" autocomplete="name"></div>
+        <label class="form-label" for="userEmail">Электронная почта</label><input class="form-input" id="userEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+        <label class="form-label" for="userPassword">Пароль</label><input class="form-input" id="userPassword" name="password" type="password" placeholder="Не менее 6 символов" autocomplete="new-password" minlength="6" required>
+        <button class="duo-button duo-button-primary modal-submit" id="submitAuth" type="submit">Создать аккаунт</button>
+      </form>
+      <p class="modal-note">Демо-форма: данные никуда не отправляются.</p>
+      <p class="modal-switch" id="modalSwitch">Уже зарегистрированы? <button type="button" data-auth="login">Войти</button></p>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/lottie.min.js"></script>
+  <script>
+    (() => {
+      const siteLanguageButton = document.getElementById('siteLanguageButton');
+      const siteLanguageMenu = document.getElementById('siteLanguageMenu');
+      const siteLanguageLabel = document.getElementById('siteLanguageLabel');
+      const modalBackdrop = document.getElementById('modalBackdrop');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalIntro = document.getElementById('modalIntro');
+      const nameFieldWrap = document.getElementById('nameFieldWrap');
+      const userName = document.getElementById('userName');
+      const userPassword = document.getElementById('userPassword');
+      const submitAuth = document.getElementById('submitAuth');
+      const modalSwitch = document.getElementById('modalSwitch');
+      const authForm = document.getElementById('authForm');
+      const toast = document.getElementById('toast');
+      const courseList = document.getElementById('courseList');
+      const heroArt = document.getElementById('heroArt');
+      const topbar = document.getElementById('topbar');
+      const heroStartButton = document.querySelector('.hero-buttons .duo-button-primary');
+      let heroLoop = null;
+      let authMode = 'register';
+      let lastFocused = null;
+      let toastTimer;
+
+      function loadLottie(container, path, { loop = true, autoplay = true, segment = null } = {}) {
+        if (!window.lottie || !container) return null;
+        const host = container.querySelector('.lottie-host') || container;
+        const animation = window.lottie.loadAnimation({
+          container: host,
+          renderer: 'svg',
+          loop,
+          autoplay,
+          path,
+          rendererSettings: { preserveAspectRatio: 'xMidYMid meet', progressiveLoad: true }
+        });
+        if (segment) animation.addEventListener('DOMLoaded', () => animation.playSegments(segment, true));
+        return animation;
+      }
+      function initAnimations() {
+        if (!window.lottie) return;
+        const heroContainer = document.getElementById('heroLottie');
+        heroLoop = loadLottie(heroContainer, 'assets/lottie/live/hero-main-50bda.json', {
+          loop: true, autoplay: true, segment: [130, 290]
+        });
+        if (heroLoop) heroLoop.addEventListener('DOMLoaded', () => heroArt.classList.add('is-loaded'));
+
+        const visuals = [...document.querySelectorAll('[data-lottie]')];
+        const mount = element => {
+          if (element.dataset.mounted === 'true') return;
+          element.dataset.mounted = 'true';
+          const segment = element.dataset.segment ? element.dataset.segment.split(',').map(Number) : null;
+          const animation = loadLottie(element, element.dataset.lottie, { loop: true, autoplay: true, segment });
+          if (!animation) return;
+          animation.addEventListener('DOMLoaded', () => element.classList.add('is-loaded'));
+          animation.addEventListener('data_failed', () => element.classList.add('load-failed'));
+          if (element.dataset.altLottie) {
+            const alternateHost = element.querySelector('.app-alt-host');
+            const alternate = loadLottie(alternateHost, element.dataset.altLottie, { loop: true, autoplay: true });
+            if (alternate) alternate.addEventListener('data_failed', () => element.classList.add('alt-load-failed'));
+          }
+          if (element.classList.contains('closing-art')) {
+            const hoverHost = element.querySelector('.closing-hover-host');
+            const hoverAnimation = loadLottie(hoverHost, 'assets/lottie/live/closing-hover-98fa.json', { loop: false, autoplay: false });
+            if (hoverAnimation) {
+              const closingButton = document.querySelector('.closing-button');
+              let resetTimer;
+              closingButton?.addEventListener('pointerenter', () => {
+                clearTimeout(resetTimer);
+                element.classList.add('is-hovering');
+                hoverAnimation.goToAndPlay(0, true);
+              });
+              closingButton?.addEventListener('pointerleave', () => {
+                element.classList.remove('is-hovering');
+                resetTimer = setTimeout(() => hoverAnimation.goToAndStop(0, true), 180);
+              });
+            }
+          }
+        };
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                mount(entry.target);
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { rootMargin: '420px 0px' });
+          visuals.forEach(element => observer.observe(element));
+        } else visuals.forEach(mount);
+      }
+      initAnimations();
+
+      function syncTopbar() {
+        if (!topbar || !heroStartButton) return;
+        const buttonBottom = heroStartButton.getBoundingClientRect().bottom;
+        const scrolled = buttonBottom <= 72;
+        topbar.classList.toggle('scrolled', scrolled);
+        topbar.classList.toggle('mobile-hidden', window.innerWidth < 768 && window.scrollY >= 3650);
+      }
+      window.addEventListener('scroll', syncTopbar, { passive: true });
+      window.addEventListener('resize', syncTopbar, { passive: true });
+      syncTopbar();
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+      }
+      function openAuth(mode) {
+        authMode = mode;
+        lastFocused = document.activeElement;
+        const login = mode === 'login';
+        modalTitle.textContent = login ? 'С возвращением!' : 'Создайте аккаунт';
+        modalIntro.textContent = login ? 'Войдите, чтобы продолжить учёбу.' : 'Начните изучать язык бесплатно.';
+        nameFieldWrap.hidden = login;
+        userName.required = !login;
+        userPassword.autocomplete = login ? 'current-password' : 'new-password';
+        submitAuth.textContent = login ? 'Войти' : 'Создать аккаунт';
+        modalSwitch.innerHTML = login
+          ? 'Ещё нет аккаунта? <button type="button" data-auth="register">Создать аккаунт</button>'
+          : 'Уже зарегистрированы? <button type="button" data-auth="login">Войти</button>';
+        modalBackdrop.classList.add('open');
+        document.body.classList.add('modal-open');
+        setTimeout(() => (login ? document.getElementById('userEmail') : userName).focus(), 40);
+      }
+      function closeAuth() {
+        if (!modalBackdrop.classList.contains('open')) return;
+        modalBackdrop.classList.remove('open');
+        document.body.classList.remove('modal-open');
+        if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+      }
+
+      siteLanguageButton.addEventListener('click', () => {
+        const open = siteLanguageMenu.classList.toggle('open');
+        siteLanguageButton.setAttribute('aria-expanded', String(open));
+      });
+      siteLanguageMenu.querySelectorAll('[data-site-language]').forEach(option => option.addEventListener('click', () => {
+        siteLanguageLabel.textContent = `ЯЗЫК САЙТА: ${option.dataset.siteLanguage}`;
+        siteLanguageMenu.querySelectorAll('[role="option"]').forEach(item => item.setAttribute('aria-selected', String(item === option)));
+        siteLanguageMenu.classList.remove('open');
+        siteLanguageButton.setAttribute('aria-expanded', 'false');
+        showToast('В этом макете перевод интерфейса не подключён.');
+      }));
+      document.addEventListener('click', event => {
+        if (!event.target.closest('.site-language-wrap')) {
+          siteLanguageMenu.classList.remove('open');
+          siteLanguageButton.setAttribute('aria-expanded', 'false');
+        }
+        const auth = event.target.closest('[data-auth]');
+        if (auth) { event.preventDefault(); openAuth(auth.dataset.auth); }
+        const course = event.target.closest('[data-course]');
+        if (course) {
+          const name = course.dataset.course;
+          courseList.querySelectorAll('.course-item').forEach(item => item.setAttribute('aria-current', String(item === course)));
+          showToast(`Выбран курс: ${name}`);
+        }
+      });
+      document.querySelectorAll('[data-scroll-courses]').forEach(button => button.addEventListener('click', () => {
+        courseList.scrollBy({ left: button.dataset.scrollCourses === 'right' ? 260 : -260, behavior: 'smooth' });
+      }));
+      document.getElementById('modalClose').addEventListener('click', closeAuth);
+      modalBackdrop.addEventListener('click', event => { if (event.target === modalBackdrop) closeAuth(); });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          closeAuth();
+          siteLanguageMenu.classList.remove('open');
+          siteLanguageButton.setAttribute('aria-expanded', 'false');
+        }
+      });
+      authForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const name = userName.value.trim();
+        const login = authMode === 'login';
+        closeAuth();
+        authForm.reset();
+        showToast(login ? 'Демо: авторизация не подключена.' : `Демо: аккаунт не создавался${name ? `, ${name}` : ''}.`);
+      });
+    })();
+  </script>
+</body>
+</html>

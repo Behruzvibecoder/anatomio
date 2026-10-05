@@ -1,0 +1,11 @@
+# Local comparison captures and scratch tooling
+duo-*.png
+anatomio-source.zip
+.tmp-pw/
+node_modules/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
