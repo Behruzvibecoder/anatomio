@@ -1,6 +1,6 @@
 # Anatomio — Anatomy Learning Landing Page
 
-A Russian-language, static landing-page prototype for **Anatomio**, a project focused on learning human anatomy through clear explanations, visual topics, and short study sessions.
+A Russian-language, static landing-page prototype for **Anatomio**, a project focused on learning human anatomy through clear explanations, visual topics, and short study sessions. The onboarding hero uses a custom text-based Anatomio wordmark, the project’s supplied owl artwork, and a compact responsive layout.
 
 ## Run locally
 
@@ -19,6 +19,9 @@ Then open `http://localhost:4173`.
 - The landing page and animations are static client-side assets; there is no backend.
 - The language selector is a visual demo; translated interfaces are not connected.
 
-## Third-party assets
+## Brand and third-party assets
 
-Some legacy illustrations, animations, and type assets inherited from the original visual reference remain in this prototype. They belong to their respective rights holders; the Anatomio branding and copy do not grant rights to redistribute them. Review the applicable licenses before reusing or publishing those assets.
+- `assets/anatomio-brand.css` defines the Anatomio wordmark, palette, onboarding layout, and phone breakpoints.
+- `assets/anatomio-owl-cutout.png` is a transparent mascot cutout made from the owl artwork supplied for this project; the rendered wordmark is HTML text, not the original white-background image.
+- The self-hosted Nunito variable font subsets in `assets/nunito-*.woff2` come from Google Fonts and are licensed under the SIL Open Font License 1.1. See `assets/OFL-Nunito.txt`.
+- Some legacy illustrations and animations in the lower landing-page sections remain from the earlier visual reference. They belong to their respective rights holders; review the applicable licenses before reusing or redistributing them.

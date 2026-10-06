@@ -7,32 +7,18 @@
   <meta name="description" content="Изучайте анатомию человека с Anatomio: понятные объяснения, наглядные темы и короткие занятия.">
   <title>Anatomio — изучайте анатомию наглядно</title>
   <style>
-    @font-face {
-      font-family: "Anatomio Sans";
-      src: url("assets/duolingo-sans.woff2") format("woff2");
-      font-style: normal;
-      font-weight: 100 900;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: "Feather";
-      src: url("assets/feather.woff2") format("woff2");
-      font-style: normal;
-      font-weight: 900;
-      font-display: swap;
-    }
     :root {
-      --owl: #58cc02;
-      --owl-dark: #46a302;
-      --eel: #4b4b4b;
-      --wolf: #777777;
-      --swan: #e5e5e5;
-      --macaw: #1cb0f6;
-      --manta: #042c60;
-      --deep-martin: #100f3e;
-      --turtle-light: #a5ed6e;
-      --sea-sponge: #d7ffb8;
-      --max-width: 988px;
+      --owl: #25866b;
+      --owl-dark: #17674f;
+      --eel: #173d35;
+      --wolf: #64776f;
+      --swan: #dce9e2;
+      --macaw: #e98272;
+      --manta: #17463d;
+      --deep-martin: #123e37;
+      --turtle-light: #bdebd4;
+      --sea-sponge: #edf8f2;
+      --max-width: 1120px;
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; overflow-x: clip; }
@@ -469,12 +455,16 @@
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
     }
   </style>
+  <link rel="stylesheet" href="assets/anatomio-brand.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к содержанию</a>
   <header class="topbar" id="topbar">
     <div class="topbar-inner">
-      <a href="#top" aria-label="Anatomio — на главную"><img class="brand-logo" src="assets/anatomio-logo.png" alt="Anatomio — Learn, Practice, Master"></a>
+      <a class="brand-lockup" href="#top" aria-label="Anatomio — на главную">
+        <span class="brand-symbol"><img src="assets/anatomio-owl-cutout.png" alt=""></span>
+        <span class="brand-wordmark" aria-hidden="true"><span>Anato</span><span class="wordmark-green">mio</span></span>
+      </a>
       <div class="topbar-actions">
         <div class="site-language-wrap">
           <button class="site-language" id="siteLanguageButton" type="button" aria-haspopup="listbox" aria-expanded="false">
@@ -496,16 +486,20 @@
   <main id="main">
     <section class="hero-stage" id="top" aria-label="Изучайте анатомию с Anatomio">
       <div class="hero-grid">
-        <div class="hero-art" id="heroArt" role="img" aria-label="Анимированная иллюстрация к изучению анатомии">
-          <img class="hero-fallback" src="assets/live/hero-placeholder.png" alt="" fetchpriority="high">
-          <div class="hero-lottie" id="heroLottie" aria-hidden="true"><div class="lottie-host"></div></div>
-        </div>
         <div class="hero-copy">
-          <h1>Изучайте анатомию человека — просто, наглядно, шаг за шагом!</h1>
+          <p class="hero-eyebrow"><span class="hero-eyebrow-dot" aria-hidden="true"></span>КОРОТКИЕ УРОКИ АНАТОМИИ</p>
+          <h1>Узнай, <span class="hero-title-highlight">как устроено</span> твоё тело.</h1>
+          <p class="hero-description">Разбирайся в костях, мышцах и органах — наглядно и в удобном темпе.</p>
           <div class="hero-buttons">
-            <button class="anatomio-button anatomio-button-primary" type="button" data-auth="register">Начать</button>
-            <button class="anatomio-button anatomio-button-secondary" type="button" data-auth="login">У меня уже есть аккаунт</button>
+            <button class="anatomio-button anatomio-button-primary" type="button" data-auth="register">Начать обучение</button>
+            <button class="anatomio-button anatomio-button-secondary" type="button" data-auth="login">Войти в аккаунт</button>
           </div>
+        </div>
+        <div class="hero-art" role="img" aria-label="Зелёная сова Anatomio изучает сердце и скелет по учебнику">
+          <span class="hero-chip hero-chip--heart"><span class="hero-chip-dot" aria-hidden="true"></span>СЕРДЦЕ</span>
+          <span class="hero-chip hero-chip--bones"><span class="hero-chip-dot" aria-hidden="true"></span>СКЕЛЕТ</span>
+          <span class="hero-chip hero-chip--brain"><span class="hero-chip-dot" aria-hidden="true"></span>МОЗГ</span>
+          <img class="hero-owl" src="assets/anatomio-owl-cutout.png" alt="" fetchpriority="high">
         </div>
       </div>
     <div class="language-dock" aria-label="Популярные темы анатомии">
@@ -691,7 +685,12 @@
   <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal">
       <button class="modal-close" id="modalClose" type="button" aria-label="Закрыть">×</button>
-      <div class="modal-brand"><img src="assets/anatomio-logo.png" alt="Anatomio — Learn, Practice, Master"></div>
+      <div class="modal-brand">
+        <div class="brand-lockup modal-brand-lockup" aria-label="Anatomio">
+          <span class="brand-symbol"><img src="assets/anatomio-owl-cutout.png" alt=""></span>
+          <span class="brand-wordmark" aria-hidden="true"><span>Anato</span><span class="wordmark-green">mio</span></span>
+        </div>
+      </div>
       <h2 id="modalTitle">Создайте аккаунт</h2>
       <p class="modal-intro" id="modalIntro">Начните разбирать анатомию с основ.</p>
       <form id="authForm">
@@ -723,10 +722,8 @@
       const authForm = document.getElementById('authForm');
       const toast = document.getElementById('toast');
       const courseList = document.getElementById('courseList');
-      const heroArt = document.getElementById('heroArt');
       const topbar = document.getElementById('topbar');
       const heroStartButton = document.querySelector('.hero-buttons .anatomio-button-primary');
-      let heroLoop = null;
       let authMode = 'register';
       let lastFocused = null;
       let toastTimer;
@@ -747,12 +744,6 @@
       }
       function initAnimations() {
         if (!window.lottie) return;
-        const heroContainer = document.getElementById('heroLottie');
-        heroLoop = loadLottie(heroContainer, 'assets/lottie/live/hero-main-50bda.json', {
-          loop: true, autoplay: true, segment: [130, 290]
-        });
-        if (heroLoop) heroLoop.addEventListener('DOMLoaded', () => heroArt.classList.add('is-loaded'));
-
         const visuals = [...document.querySelectorAll('[data-lottie]')];
         const mount = element => {
           if (element.dataset.mounted === 'true') return;
