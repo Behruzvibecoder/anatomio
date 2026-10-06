@@ -481,11 +481,9 @@
             <span id="siteLanguageLabel">ЯЗЫК САЙТА: РУССКИЙ</span><span class="down-chevron" aria-hidden="true"></span>
           </button>
           <div class="site-language-menu" id="siteLanguageMenu" role="listbox" aria-label="Язык сайта">
-            <button type="button" role="option" aria-selected="true" data-site-language="РУССКИЙ">Русский</button>
-            <button type="button" role="option" aria-selected="false" data-site-language="ENGLISH">English</button>
-            <button type="button" role="option" aria-selected="false" data-site-language="ESPAÑOL">Español</button>
-            <button type="button" role="option" aria-selected="false" data-site-language="FRANÇAIS">Français</button>
-            <button type="button" role="option" aria-selected="false" data-site-language="DEUTSCH">Deutsch</button>
+            <button type="button" role="option" aria-selected="true" data-site-language="ru">Русский</button>
+            <button type="button" role="option" aria-selected="false" data-site-language="en">English</button>
+            <button type="button" role="option" aria-selected="false" data-site-language="uz">O‘zbekcha</button>
           </div>
         </div>
         <button class="anatomio-button anatomio-button-primary topbar-start" type="button" data-auth="register">Начать</button>
@@ -683,7 +681,9 @@
     <div class="footer-languages">
       <h3>Язык сайта:</h3>
       <ul class="language-links" aria-label="Языки сайта">
-        <li><a href="#top" lang="ar">العربية</a></li><li><a href="#top" lang="bn">বাংলা</a></li><li><a href="#top" lang="cs">Čeština</a></li><li><a href="#top" lang="de">Deutsch</a></li><li><a href="#top" lang="el">Ελληνικά</a></li><li><a href="#top" lang="en">English</a></li><li><a href="#top" lang="es">Español</a></li><li><a href="#top" lang="fr">Français</a></li><li><a href="#top" lang="hi">हिंदी</a></li><li><a href="#top" lang="hu">Magyar</a></li><li><a href="#top" lang="id">Bahasa Indonesia</a></li><li><a href="#top" lang="it">Italiano</a></li><li><a href="#top" lang="ja">日本語</a></li><li><a href="#top" lang="kn">ಕನ್ನಡ</a></li><li><a href="#top" lang="ko">한국어</a></li><li><a href="#top" lang="mr">मराठी</a></li><li><a href="#top" lang="nl">Nederlands</a></li><li><a href="#top" lang="pa">ਪੰਜਾਬੀ</a></li><li><a href="#top" lang="pl">Polski</a></li><li><a href="#top" lang="pt">Português</a></li><li><a href="#top" lang="ro">Română</a></li><li><a href="#top" lang="ru">Русский</a></li><li><a href="#top" lang="sv">svenska</a></li><li><a href="#top" lang="ta">தமிழ்</a></li><li><a href="#top" lang="te">తెలుగు</a></li><li><a href="#top" lang="th">ภาษาไทย</a></li><li><a href="#top" lang="tl">Tagalog</a></li><li><a href="#top" lang="tr">Türkçe</a></li><li><a href="#top" lang="uk">Українською</a></li><li><a href="#top" lang="ur">اُردُو</a></li><li><a href="#top" lang="vi">Tiếng Việt</a></li><li><a href="#top" lang="zh">中文</a></li>
+        <li><a href="#top" lang="ru" data-site-language="ru" aria-current="true">Русский</a></li>
+        <li><a href="#top" lang="en" data-site-language="en">English</a></li>
+        <li><a href="#top" lang="uz" data-site-language="uz">O‘zbekcha</a></li>
       </ul>
     </div>
   </footer>
@@ -707,6 +707,7 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="assets/lottie.min.js"></script>
+  <script src="assets/anatomio-i18n.js"></script>
   <script>
     (() => {
       const siteLanguageButton = document.getElementById('siteLanguageButton');
@@ -816,19 +817,24 @@
         clearTimeout(toastTimer);
         toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
       }
+      function syncAuthCopy() {
+        const text = window.AnatomioI18n.getRuntime();
+        const login = authMode === 'login';
+        modalTitle.textContent = login ? text.welcomeBack : text.createAccount;
+        modalIntro.textContent = login ? text.loginIntro : text.registerIntro;
+        submitAuth.textContent = login ? text.login : text.createAccount;
+        modalSwitch.innerHTML = login
+          ? `${text.noAccount} <button type="button" data-auth="register">${text.createAccount}</button>`
+          : `${text.alreadyRegistered} <button type="button" data-auth="login">${text.login}</button>`;
+      }
       function openAuth(mode) {
         authMode = mode;
         lastFocused = document.activeElement;
         const login = mode === 'login';
-        modalTitle.textContent = login ? 'С возвращением!' : 'Создайте аккаунт';
-        modalIntro.textContent = login ? 'Войдите, чтобы продолжить занятия.' : 'Начните разбирать анатомию с основ.';
+        syncAuthCopy();
         nameFieldWrap.hidden = login;
         userName.required = !login;
         userPassword.autocomplete = login ? 'current-password' : 'new-password';
-        submitAuth.textContent = login ? 'Войти' : 'Создать аккаунт';
-        modalSwitch.innerHTML = login
-          ? 'Ещё нет аккаунта? <button type="button" data-auth="register">Создать аккаунт</button>'
-          : 'Уже зарегистрированы? <button type="button" data-auth="login">Войти</button>';
         modalBackdrop.classList.add('open');
         document.body.classList.add('modal-open');
         setTimeout(() => (login ? document.getElementById('userEmail') : userName).focus(), 40);
@@ -839,17 +845,23 @@
         document.body.classList.remove('modal-open');
         if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
       }
+      window.addEventListener('anatomio-language-change', () => {
+        if (modalBackdrop.classList.contains('open')) syncAuthCopy();
+      });
 
       siteLanguageButton.addEventListener('click', () => {
         const open = siteLanguageMenu.classList.toggle('open');
         siteLanguageButton.setAttribute('aria-expanded', String(open));
       });
       siteLanguageMenu.querySelectorAll('[data-site-language]').forEach(option => option.addEventListener('click', () => {
-        siteLanguageLabel.textContent = `ЯЗЫК САЙТА: ${option.dataset.siteLanguage}`;
-        siteLanguageMenu.querySelectorAll('[role="option"]').forEach(item => item.setAttribute('aria-selected', String(item === option)));
+        window.AnatomioI18n.setLanguage(option.dataset.siteLanguage);
         siteLanguageMenu.classList.remove('open');
         siteLanguageButton.setAttribute('aria-expanded', 'false');
-        showToast('В этой демо-версии перевод интерфейса пока не подключён.');
+      }));
+      document.querySelectorAll('.language-links [data-site-language]').forEach(link => link.addEventListener('click', event => {
+        event.preventDefault();
+        window.AnatomioI18n.setLanguage(link.dataset.siteLanguage);
+        document.getElementById('top').scrollIntoView({ behavior: 'smooth' });
       }));
       document.addEventListener('click', event => {
         if (!event.target.closest('.site-language-wrap')) {
@@ -862,7 +874,7 @@
         if (course) {
           const name = course.dataset.course;
           courseList.querySelectorAll('.course-item').forEach(item => item.setAttribute('aria-current', String(item === course)));
-          showToast(`Выбрана тема: ${name}`);
+          showToast(`${window.AnatomioI18n.getRuntime().selectedTopic}: ${name}`);
         }
       });
       document.querySelectorAll('[data-scroll-courses]').forEach(button => button.addEventListener('click', () => {
@@ -883,7 +895,8 @@
         const login = authMode === 'login';
         closeAuth();
         authForm.reset();
-        showToast(login ? 'Демо: авторизация не подключена.' : `Демо: аккаунт не создавался${name ? `, ${name}` : ''}.`);
+        const text = window.AnatomioI18n.getRuntime();
+        showToast(login ? text.demoLogin : text.demoRegister(name));
       });
     })();
   </script>
