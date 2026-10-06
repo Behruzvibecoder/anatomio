@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="Duolingo — самый нескучный способ изучать языки, шахматы и другие предметы.">
-  <title>Duolingo — изучайте язык бесплатно</title>
+  <meta name="description" content="Anatomio — Learn. Practice. Master.">
+  <title>Anatomio — Learn. Practice. Master.</title>
   <style>
     @font-face {
       font-family: "Duolingo Sans";
@@ -67,7 +67,7 @@
       width: min(988px, calc(100% - 48px)); height: 100%; margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
     }
-    .brand-logo { width: 179px; height: 42px; object-fit: contain; }
+    .brand-logo { width: 200px; height: 67px; object-fit: contain; }
     .topbar-actions { display: flex; align-items: center; justify-content: flex-end; min-width: 194px; }
     .site-language-wrap { position: relative; }
     .site-language {
@@ -348,7 +348,7 @@
       border: 0; border-radius: 10px; background: #f4f4f4; color: #777; font-size: 23px; cursor: pointer;
     }
     .modal-brand { display: flex; justify-content: center; margin-bottom: 16px; }
-    .modal-brand img { width: 145px; height: auto; }
+    .modal-brand img { width: 200px; max-width: 100%; height: auto; }
     .modal h2 { margin: 0 24px 8px; text-align: center; font-size: 25px; line-height: 1.25; }
     .modal-intro { margin: 0 auto 21px; max-width: 310px; text-align: center; color: #888; font-size: 14px; line-height: 1.45; }
     .form-label { display: block; margin: 13px 0 7px; color: #777; font-size: 11px; font-weight: 800; letter-spacing: .55px; text-transform: uppercase; }
@@ -397,8 +397,8 @@
       .topbar.scrolled { box-shadow: none; border-bottom-color: var(--swan); }
       .topbar.mobile-hidden { transform: translateY(-100%); }
       .topbar-inner { width: 100%; justify-content: center; }
-      .topbar-inner > a { display: block; height: 38px; transform: translateY(-3px); }
-      .brand-logo { width: 161px; height: 38px; }
+      .topbar-inner > a { display: block; height: 60px; transform: none; }
+      .brand-logo { width: 180px; height: 60px; }
       .topbar-actions { display: none; }
       .hero-stage { height: 100vh; min-height: 844px; padding: 0; overflow: hidden; }
       .hero-grid { position: absolute; inset: 0; transform: none; width: 100%; height: 100%; margin: 0; padding: 0; display: block; }
@@ -461,7 +461,7 @@
   <a class="skip-link" href="#main">Перейти к содержанию</a>
   <header class="topbar" id="topbar">
     <div class="topbar-inner">
-      <a href="#top" aria-label="Duolingo — на главную"><img class="brand-logo" src="assets/logo.svg" alt="Duolingo"></a>
+      <a href="#top" aria-label="Anatomio — на главную"><img class="brand-logo" src="assets/anatomio-logo.png" alt="Anatomio — Learn, Practice, Master"></a>
       <div class="topbar-actions">
         <div class="site-language-wrap">
           <button class="site-language" id="siteLanguageButton" type="button" aria-haspopup="listbox" aria-expanded="false">
@@ -691,7 +691,7 @@
   <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal">
       <button class="modal-close" id="modalClose" type="button" aria-label="Закрыть">×</button>
-      <div class="modal-brand"><img src="assets/logo.svg" alt="Duolingo"></div>
+      <div class="modal-brand"><img src="assets/anatomio-logo.png" alt="Anatomio — Learn, Practice, Master"></div>
       <h2 id="modalTitle">Создайте аккаунт</h2>
       <p class="modal-intro" id="modalIntro">Начните изучать язык бесплатно.</p>
       <form id="authForm">
