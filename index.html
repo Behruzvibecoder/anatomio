@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="Anatomio — Learn. Practice. Master.">
-  <title>Anatomio — Learn. Practice. Master.</title>
+  <meta name="description" content="Изучайте анатомию человека с Anatomio: понятные объяснения, наглядные темы и короткие занятия.">
+  <title>Anatomio — изучайте анатомию наглядно</title>
   <style>
     @font-face {
-      font-family: "Duolingo Sans";
+      font-family: "Anatomio Sans";
       src: url("assets/duolingo-sans.woff2") format("woff2");
       font-style: normal;
       font-weight: 100 900;
@@ -41,7 +41,7 @@
       overflow-x: clip;
       background: #fff;
       color: var(--eel);
-      font-family: "Duolingo Sans", Arial, sans-serif;
+      font-family: "Anatomio Sans", Arial, sans-serif;
       font-size: 17px;
       line-height: 20px;
       -webkit-font-smoothing: antialiased;
@@ -99,20 +99,20 @@
     .topbar.scrolled .site-language-wrap { display: none; }
     .topbar.scrolled .topbar-start { display: inline-flex !important; }
 
-    .duo-button {
+    .anatomio-button {
       min-height: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center;
-      padding: 0 16px; border-radius: 12px; font-family: "Duolingo Sans", Arial, sans-serif;
+      padding: 0 16px; border-radius: 12px; font-family: "Anatomio Sans", Arial, sans-serif;
       font-size: 14px; font-weight: 800; line-height: 1; letter-spacing: .9px;
       text-transform: uppercase; cursor: pointer; white-space: nowrap;
       transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
     }
-    .duo-button:hover { filter: brightness(1.035); transform: translateY(-1px); }
-    .duo-button:active { transform: translateY(2px); box-shadow: none; }
-    .duo-button-primary {
+    .anatomio-button:hover { filter: brightness(1.035); transform: translateY(-1px); }
+    .anatomio-button:active { transform: translateY(2px); box-shadow: none; }
+    .anatomio-button-primary {
       color: #fff; background: var(--owl); border: 0; border-bottom: 4px solid var(--owl-dark);
       box-shadow: 0 1px 0 var(--owl-dark);
     }
-    .duo-button-secondary {
+    .anatomio-button-secondary {
       color: var(--macaw); background: #fff; border: 2px solid var(--swan);
       border-bottom-width: 4px; box-shadow: 0 1px 0 #dedede;
     }
@@ -143,11 +143,11 @@
     }
     .hero-copy h1 {
       width: 100%; max-width: 480px; margin: 0 0 40px; color: var(--eel);
-      font-family: "Duolingo Sans", Arial, sans-serif; font-size: 32px; font-weight: 700;
+      font-family: "Anatomio Sans", Arial, sans-serif; font-size: 32px; font-weight: 700;
       line-height: normal; letter-spacing: normal;
     }
     .hero-buttons { width: 330px; max-width: 100%; display: flex; flex-direction: column; gap: 12px; }
-    .hero-buttons .duo-button { width: 100%; }
+    .hero-buttons .anatomio-button { width: 100%; }
 
     .language-dock {
       position: absolute; z-index: 4; left: 0; right: 0; bottom: 0; height: 80px;
@@ -172,12 +172,13 @@
       flex: 0 0 auto; min-height: 0; display: inline-flex; align-items: center; gap: 0;
       padding: 0; border: 0; background: transparent; color: #858585; cursor: pointer;
     }
-    .course-flag { width: 36px; height: 27.7714px; flex: 0 0 auto; margin-right: 10px; }
+    .topic-index { width: 28px; height: 28px; flex: 0 0 28px; display: grid; place-items: center; margin-right: 10px; border-radius: 9px; background: var(--sea-sponge); color: var(--owl-dark); font-size: 11px; font-weight: 900; letter-spacing: 0; }
+    .course-item:nth-child(even) .topic-index { background: #eaf6ff; color: #1486b2; }
     .course-name { font-size: 15px; font-weight: 700; line-height: 20px; letter-spacing: .8px; text-transform: uppercase; white-space: nowrap; }
     .course-item:hover .course-name { color: var(--eel); }
     .course-item[aria-current="true"] .course-name { color: #767676; }
     .course-item:focus-visible, .dock-arrow:focus-visible, .site-language:focus-visible,
-    .duo-button:focus-visible { outline: 3px solid rgba(28,176,246,.55); outline-offset: 3px; }
+    .anatomio-button:focus-visible { outline: 3px solid rgba(28,176,246,.55); outline-offset: 3px; }
 
     /* The four feature rows mirror the live page's 530px art rhythm. */
     .marketing-content { background: #fff; }
@@ -195,7 +196,7 @@
     }
     .feature-copy h2, .test-copy h2 {
       width: fit-content; max-width: 503px; margin: 0; color: var(--owl);
-      font-family: "Feather", "Duolingo Sans", Arial, sans-serif; font-size: 48px;
+      font-family: "Feather", "Anatomio Sans", Arial, sans-serif; font-size: 48px;
       font-weight: 700; line-height: normal; letter-spacing: normal;
     }
     .feature-copy p, .test-copy p {
@@ -230,7 +231,7 @@
     }
     .app-copy h2 {
       width: 583px; max-width: calc(100vw - 32px); margin: 0; color: var(--manta);
-      font-family: "Feather", "Duolingo Sans", Arial, sans-serif; font-size: 64px;
+      font-family: "Feather", "Anatomio Sans", Arial, sans-serif; font-size: 64px;
       font-weight: 700; line-height: normal; letter-spacing: -.02em;
     }
     .store-row { display: flex; align-items: center; justify-content: center; gap: 24px; }
@@ -240,11 +241,10 @@
       background: #fff; color: #4b4b4b; transition: transform .12s ease, background .12s ease;
     }
     .store-badge:hover { transform: translateY(-1px); background: #fafafa; }
-    .store-badge-app { width: 153px; }
-    .store-badge-google { width: 168px; }
+    .store-badge-app, .store-badge-google { width: 220px; }
     .store-badge svg { width: 34px; height: 34px; flex: 0 0 auto; transform: translateY(-2px); }
     .store-badge > span { display: block; text-align: left; white-space: nowrap; font-size: 17px; font-weight: 700; line-height: 20px; transform: translateY(-.5px); }
-    .store-badge small { display: block; font-family: "Duolingo Sans", Arial, sans-serif; font-size: 14px; font-weight: 700; line-height: 17px; }
+    .store-badge small { display: block; font-family: "Anatomio Sans", Arial, sans-serif; font-size: 14px; font-weight: 700; line-height: 17px; }
     .store-badge strong { display: block; font-size: 17px; line-height: 20px; font-weight: 700; }
     .app-art {
       position: absolute; z-index: 0; left: calc(50% - 860px); top: 175px;
@@ -260,14 +260,15 @@
     }
     .super-art { position: relative; flex: 0 0 530px; width: 530px; height: 530px; }
     .super-copy { flex: 0 0 418px; width: 418px; display: flex; flex-direction: column; align-items: center; gap: 52px; }
-    .super-logo-picture { display: block; width: 418px; max-width: 100%; }
-    .super-logo { display: block; width: 100%; height: auto; margin: 0; }
+    .super-wordmark { display: flex; align-items: center; justify-content: center; gap: 12px; width: 418px; max-width: 100%; color: #fff; }
+    .super-wordmark span { font-family: "Feather", Arial, sans-serif; font-size: 42px; font-weight: 900; line-height: 1; letter-spacing: -.04em; }
+    .super-wordmark strong { padding: 8px 11px; border-radius: 9px; background: var(--owl); color: #fff; font-size: 13px; font-weight: 900; line-height: 1; letter-spacing: 1px; }
     .super-button {
       width: 199.4px; height: 50px; min-height: 50px; border: 0; border-bottom: 4px solid #a2a0b4;
       background: #fff; color: #000437; font-size: 14px; letter-spacing: .8px; box-shadow: 0 1px 0 #a2a0b4;
     }
 
-    /* English Test: white, open, and aligned to the same artwork grid. */
+    /* Anatomy knowledge check: white, open, and aligned to the same artwork grid. */
     .test-section { padding: 96px 0; background: #fff; }
     .test-panel { position: relative; width: min(988px, calc(100% - 48px)); height: 530px; margin: 0 auto; }
     .test-copy {
@@ -290,7 +291,7 @@
     }
     .closing-copy h2 {
       width: 583px; max-width: calc(100vw - 32px); margin: 0; color: var(--owl);
-      font-family: "Feather", "Duolingo Sans", Arial, sans-serif; font-size: 64px;
+      font-family: "Feather", "Anatomio Sans", Arial, sans-serif; font-size: 64px;
       font-weight: 700; line-height: normal; letter-spacing: -.02em; text-align: center;
     }
     .closing-button { width: 330px; max-width: calc(100vw - 40px); }
@@ -412,7 +413,7 @@
       .hero-copy h1 { flex: 1 1 0%; width: min(330px, 100%); max-width: 330px; margin: 0; font-size: clamp(26px, 7.8vw, 32px); line-height: 1.15; letter-spacing: normal; }
       .hero-copy h1 br { display: none; }
       .hero-buttons { flex: 0 0 auto; width: min(330px, 100%); gap: 12px; }
-      .duo-button { min-height: 50px; height: 50px; font-size: 15px; }
+      .anatomio-button { min-height: 50px; height: 50px; font-size: 15px; }
       .language-dock { display: none; }
       .features { width: calc(100% - 30px); padding: 96px 0; }
       .feature-row, .feature-row:nth-child(even) {
@@ -429,13 +430,15 @@
       .app-copy { position: relative; top: auto; left: auto; transform: none; width: 100%; padding: 0; gap: 32px; }
       .app-copy h2 { width: 330px; max-width: 100%; font-size: 36px; line-height: normal; }
       .store-row { flex-direction: column; gap: 16px; }
-      .store-badge-app, .store-badge-google { width: 168px; }
+      .store-badge-app, .store-badge-google { width: min(220px, 100%); }
       .app-art { position: absolute; top: auto; bottom: 0; left: calc(50% - 300px); transform: none; width: 1200px; }
       .super-section { height: 100vh; min-height: 844px; padding: 0; }
       .super-inner { width: 100%; height: 100%; padding: 134.5px 0 0; flex-direction: column; justify-content: flex-start; gap: 24px; }
       .super-art { flex: none; width: min(345px, calc(100vw - 45px)); height: min(345px, calc(100vw - 45px)); }
       .super-copy { flex: none; width: 100%; align-items: center; gap: 52px; }
-      .super-logo-picture { width: min(100%, 339px); }
+      .super-wordmark { width: min(100%, 339px); gap: 8px; }
+      .super-wordmark span { font-size: 34px; }
+      .super-wordmark strong { padding: 7px 9px; font-size: 11px; }
       .super-button { width: 330px; }
       .test-section { padding: 96px 0; }
       .test-panel { width: calc(100% - 30px); height: auto; display: flex; flex-direction: column; align-items: center; gap: 32px; }
@@ -460,7 +463,7 @@
       .hero-copy { top: calc(clamp(82px, 15svh, 110px) + min(68vw, 30svh, 230px) + 14px); bottom: max(12px, env(safe-area-inset-bottom)); gap: 12px; }
       .hero-copy h1 { font-size: clamp(24px, 7.5vw, 28px); line-height: 1.1; }
       .hero-buttons { gap: 8px; }
-      .hero-copy .duo-button { min-height: 46px; height: 46px; font-size: 13px; }
+      .hero-copy .anatomio-button { min-height: 46px; height: 46px; font-size: 13px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
@@ -485,69 +488,59 @@
             <button type="button" role="option" aria-selected="false" data-site-language="DEUTSCH">Deutsch</button>
           </div>
         </div>
-        <button class="duo-button duo-button-primary topbar-start" type="button" data-auth="register">Начать</button>
+        <button class="anatomio-button anatomio-button-primary topbar-start" type="button" data-auth="register">Начать</button>
       </div>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero-stage" id="top" aria-label="Добро пожаловать в Duolingo">
+    <section class="hero-stage" id="top" aria-label="Изучайте анатомию с Anatomio">
       <div class="hero-grid">
-        <div class="hero-art" id="heroArt" role="img" aria-label="Совёнок Дуо и персонажи учатся вместе">
+        <div class="hero-art" id="heroArt" role="img" aria-label="Анимированная иллюстрация к изучению анатомии">
           <img class="hero-fallback" src="assets/live/hero-placeholder.png" alt="" fetchpriority="high">
           <div class="hero-lottie" id="heroLottie" aria-hidden="true"><div class="lottie-host"></div></div>
         </div>
         <div class="hero-copy">
-          <h1>Самый нескучный способ изучать языки, шахматы и другие предметы!</h1>
+          <h1>Изучайте анатомию человека — просто, наглядно, шаг за шагом!</h1>
           <div class="hero-buttons">
-            <button class="duo-button duo-button-primary" type="button" data-auth="register">Начать</button>
-            <button class="duo-button duo-button-secondary" type="button" data-auth="login">У меня уже есть аккаунт</button>
+            <button class="anatomio-button anatomio-button-primary" type="button" data-auth="register">Начать</button>
+            <button class="anatomio-button anatomio-button-secondary" type="button" data-auth="login">У меня уже есть аккаунт</button>
           </div>
         </div>
       </div>
-    <div class="language-dock" aria-label="Популярные курсы">
+    <div class="language-dock" aria-label="Популярные темы анатомии">
       <div class="dock-inner">
         <button class="dock-arrow" type="button" data-scroll-courses="left" aria-label="Предыдущие курсы"><svg viewBox="0 0 16 16" fill="none"><path d="m10 3-5 5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="course-list" id="courseList">
-          <button class="course-item" type="button" data-course="Английский" aria-current="true" aria-label="Английский">
-            <img class="course-flag" src="assets/courses/flag-english.svg" alt="">
-            <span class="course-name">английский</span>
+          <button class="course-item" type="button" data-course="Кости и скелет" aria-current="true" aria-label="Кости и скелет">
+            <span class="topic-index" aria-hidden="true">01</span><span class="course-name">Кости и скелет</span>
           </button>
-          <button class="course-item" type="button" data-course="Шахматы" aria-label="Шахматы">
-            <img class="course-flag" src="assets/courses/icon-chess.svg" alt="">
-            <span class="course-name">Шахматы</span>
+          <button class="course-item" type="button" data-course="Мышцы" aria-label="Мышцы">
+            <span class="topic-index" aria-hidden="true">02</span><span class="course-name">Мышцы</span>
           </button>
-          <button class="course-item" type="button" data-course="Испанский" aria-label="Испанский">
-            <img class="course-flag" src="assets/courses/flag-spanish.svg" alt="">
-            <span class="course-name">испанский</span>
+          <button class="course-item" type="button" data-course="Сердце" aria-label="Сердце">
+            <span class="topic-index" aria-hidden="true">03</span><span class="course-name">Сердце</span>
           </button>
-          <button class="course-item" type="button" data-course="Французский" aria-label="Французский">
-            <img class="course-flag" src="assets/courses/flag-french.svg" alt="">
-            <span class="course-name">французский</span>
+          <button class="course-item" type="button" data-course="Внутренние органы" aria-label="Внутренние органы">
+            <span class="topic-index" aria-hidden="true">04</span><span class="course-name">Внутренние органы</span>
           </button>
-          <button class="course-item" type="button" data-course="Немецкий" aria-label="Немецкий">
-            <img class="course-flag" src="assets/courses/flag-german.svg" alt="">
-            <span class="course-name">немецкий</span>
+          <button class="course-item" type="button" data-course="Мозг" aria-label="Мозг">
+            <span class="topic-index" aria-hidden="true">05</span><span class="course-name">Мозг</span>
           </button>
-          <button class="course-item" type="button" data-course="Итальянский" aria-label="Итальянский">
-            <img class="course-flag" src="assets/courses/flag-italian.svg" alt="">
-            <span class="course-name">итальянский</span>
+          <button class="course-item" type="button" data-course="Нервная система" aria-label="Нервная система">
+            <span class="topic-index" aria-hidden="true">06</span><span class="course-name">Нервная система</span>
           </button>
-          <button class="course-item" type="button" data-course="Португальский" aria-label="Португальский">
-            <img class="course-flag" src="assets/courses/flag-portuguese.svg" alt="">
-            <span class="course-name">португальский</span>
+          <button class="course-item" type="button" data-course="Дыхание" aria-label="Дыхание">
+            <span class="topic-index" aria-hidden="true">07</span><span class="course-name">Дыхание</span>
           </button>
-          <button class="course-item" type="button" data-course="Японский" aria-label="Японский">
-            <img class="course-flag" src="assets/courses/flag-japanese.svg" alt="">
-            <span class="course-name">японский</span>
+          <button class="course-item" type="button" data-course="Пищеварение" aria-label="Пищеварение">
+            <span class="topic-index" aria-hidden="true">08</span><span class="course-name">Пищеварение</span>
           </button>
-          <button class="course-item" type="button" data-course="Корейский" aria-label="Корейский">
-            <img class="course-flag" src="assets/courses/flag-korean.svg" alt="">
-            <span class="course-name">корейский</span>
+          <button class="course-item" type="button" data-course="Суставы" aria-label="Суставы">
+            <span class="topic-index" aria-hidden="true">09</span><span class="course-name">Суставы</span>
           </button>
-          <button class="course-item" type="button" data-course="Китайский упрощённый" aria-label="Китайский упрощённый">
-            <img class="course-flag" src="assets/courses/flag-chinese.svg" alt="">
-            <span class="course-name">китайский (упрощённый)</span>
+          <button class="course-item" type="button" data-course="Кровообращение" aria-label="Кровообращение">
+            <span class="topic-index" aria-hidden="true">10</span><span class="course-name">Кровообращение</span>
           </button>
         </div>
         <button class="dock-arrow" type="button" data-scroll-courses="right" aria-label="Следующие курсы"><svg viewBox="0 0 16 16" fill="none"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -555,14 +548,14 @@
     </div>
     </section>
     <div class="marketing-content">
-      <section class="features" id="features" aria-label="Почему Duolingo работает">
+      <section class="features" id="features" aria-label="Почему Anatomio помогает изучать анатомию">
         <article class="feature-row">
           <div class="feature-art lottie-visual" data-lottie="assets/lottie/live/feature-effective-aea5.json" data-segment="291,450">
             <img class="lottie-fallback" src="assets/live/feature-effective.svg" alt="" loading="lazy"><div class="lottie-host" aria-hidden="true"></div>
           </div>
           <div class="feature-copy">
-            <h2>Бесплатно. Весело. Эффективно.</h2>
-            <p>Учиться с Duolingo весело и интересно. Зарабатывайте очки за правильные ответы, открывайте новые материалы и развивайте навыки разговорной речи. Наши короткие уроки действительно работают, и <a class="inline-link" href="https://www.duolingo.com/efficacy" target="_blank" rel="noreferrer">мы можем это доказать.</a></p>
+            <h2>Понятно. Наглядно. По делу.</h2>
+            <p>Разбирайтесь в костях, мышцах и органах с короткими объяснениями. Переходите от отдельных частей тела к тому, как целые системы работают вместе.</p>
           </div>
         </article>
         <article class="feature-row">
@@ -570,8 +563,8 @@
             <img class="lottie-fallback" src="assets/live/feature-science.svg" alt="" loading="lazy"><div class="lottie-host" aria-hidden="true"></div>
           </div>
           <div class="feature-copy">
-            <h2>Научный подход</h2>
-            <p>Уникальный метод обучения и увлекательные материалы: исследования показывают, что наши курсы эффективно развивают навыки чтения, письма, понимания на слух и устной речи!</p>
+            <h2>Связи, которые важно понять</h2>
+            <p>Изучайте строение тела по системам и функциям: что за что отвечает, как органы связаны между собой и как устроен организм человека.</p>
           </div>
         </article>
         <article class="feature-row">
@@ -579,8 +572,8 @@
             <img class="lottie-fallback" src="assets/live/feature-motivation.svg" alt="" loading="lazy"><div class="lottie-host" aria-hidden="true"></div>
           </div>
           <div class="feature-copy">
-            <h2>Стимул к учёбе</h2>
-            <p>Игровой подход с забавными заданиями и напоминаниями от нашего талисмана — совёнка Duo помогает быстро превратить ежедневные занятия в привычку.</p>
+            <h2>Запоминайте через практику</h2>
+            <p>Короткие занятия и регулярное повторение помогают закреплять новые понятия. Возвращайтесь к сложным темам, пока они не станут ясными.</p>
           </div>
         </article>
         <article class="feature-row">
@@ -588,24 +581,24 @@
             <img class="lottie-fallback" src="assets/live/feature-individual.svg" alt="" loading="lazy"><div class="lottie-host" aria-hidden="true"></div>
           </div>
           <div class="feature-copy">
-            <h2>Индивидуальное обучение</h2>
-            <p>Наши уроки объединяют в себе умные алгоритмы искусственного интеллекта и новейшие достижения лингвистики. Сложность и темп обучения подбираются для каждого пользователя индивидуально!</p>
+            <h2>Ваш темп и маршрут</h2>
+            <p>Выбирайте интересующие темы — от скелета и мышц до внутренних органов. Учитесь в своём ритме и постепенно складывайте целостную картину.</p>
           </div>
         </article>
       </section>
 
-      <section class="app-section" id="app" aria-label="Duolingo всегда с вами">
+      <section class="app-section" id="app" aria-label="Учитесь анатомии в удобном ритме">
         <div class="app-grid">
           <div class="app-copy">
-            <h2>Учитесь в любое время и в любом месте</h2>
-            <div class="store-row">
-              <a class="store-badge store-badge-app" href="https://apps.apple.com/ru/app/duolingo-language-lessons/id570060128" target="_blank" rel="noreferrer" aria-label="Скачать Duolingo в App Store">
-                <svg viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"><title>badge-app-store</title><path d="M26.9039 19.1188C26.9363 16.611 28.2528 14.2945 30.3922 12.981C29.0364 11.0473 26.8469 9.86522 24.4843 9.7914C21.9986 9.53084 19.5888 11.2768 18.3221 11.2768C17.0309 11.2768 15.0807 9.81727 12.9806 9.86042C10.2174 9.94957 7.7038 11.4804 6.35946 13.8929C3.49663 18.8428 5.63205 26.1174 8.3744 30.1184C9.74645 32.0776 11.35 34.2661 13.4482 34.1885C15.5014 34.1035 16.2682 32.881 18.7466 32.881C21.202 32.881 21.9215 34.1885 24.0623 34.1392C26.2655 34.1035 27.6536 32.1713 28.9775 30.1935C29.9633 28.7975 30.7219 27.2546 31.2252 25.622C28.6084 24.5167 26.907 21.9562 26.9039 19.1188V19.1188Z" fill="currentColor"></path><path d="M22.8604 7.16005C24.0617 5.71991 24.6535 3.86887 24.5102 2C22.6749 2.1925 20.9796 3.06846 19.7621 4.45334C18.5599 5.81971 17.9508 7.60728 18.0691 9.42235C19.929 9.44147 21.6949 8.60765 22.8604 7.16005V7.16005Z" fill="currentColor"></path></svg>
-                <span><small>Скачать в</small><strong>App Store</strong></span>
+            <h2>Разбирайтесь в анатомии в своём темпе</h2>
+            <div class="store-row" aria-label="Формат обучения">
+              <a class="store-badge store-badge-app" href="#features" aria-label="Перейти к коротким урокам">
+                <svg viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"><title>Тематические уроки</title><path d="M18.5 7.5C14 4.7 9 4.3 4 6v23c5-1.7 10-.9 14.5 2.5m0-24c4.5-2.8 9.5-3.2 14.5-1.5v23c-5-1.7-10-.9-14.5 2.5m0-24v24" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span><small>Подача материала</small><strong>Короткие уроки</strong></span>
               </a>
-              <a class="store-badge store-badge-google" href="https://play.google.com/store/apps/details?id=com.duolingo" target="_blank" rel="noreferrer" aria-label="Duolingo в Google Play">
-                <svg viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"><title>badge-app-store</title><path fill-rule="evenodd" clip-rule="evenodd" d="M3.80942 4.3203C3.80942 4.09554 3.82731 3.88521 3.86151 3.69016L17.8617 18.4703L3.83906 33.2741C3.81952 33.1218 3.80942 32.961 3.80942 32.792V4.3203ZM5.35237 35.0876C5.86758 35.1708 6.47838 35.0454 7.13188 34.6805L24.1811 25.1417L19.4773 20.1758L5.35237 35.0876ZM21.0928 18.4703L26.2937 23.9609L32.63 20.4164C34.4567 19.393 34.4567 17.7194 32.63 16.6985L26.1861 13.0933L21.0928 18.4703ZM24.0742 11.9117L7.13188 2.43299C6.60625 2.13818 6.10808 1.99915 5.66613 1.99915C5.60892 1.99915 5.55264 2.00146 5.49734 2.00606L19.4773 16.7648L24.0742 11.9117Z" fill="currentColor"></path></svg>
-                <span><small>Доступно в</small><strong>Google Play</strong></span>
+              <a class="store-badge store-badge-google" href="#test" aria-label="Перейти к проверке знаний">
+                <svg viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"><title>Повторение и проверка</title><path d="m7 10 2.5 2.5L14 8m5 3h11M7 20l2.5 2.5L14 18m5 3h11M7 30l2.5 2.5L14 28m5 3h11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span><small>Закрепляйте знания</small><strong>Повторением</strong></span>
               </a>
             </div>
           </div>
@@ -615,27 +608,24 @@
         </div>
       </section>
 
-      <section class="super-section" id="super" aria-label="Super Duolingo">
+      <section class="super-section" id="super" aria-label="Глубже в анатомию">
         <div class="super-inner">
           <div class="super-art lottie-visual" data-lottie="assets/lottie/live/super-904f.json" data-segment="35,156">
             <img class="lottie-fallback" src="assets/live/super-placeholder.svg" alt="" loading="lazy"><div class="lottie-host" aria-hidden="true"></div>
           </div>
           <div class="super-copy">
-            <picture class="super-logo-picture">
-              <source media="(min-width: 768px)" srcset="assets/live/super-wordmark.svg" width="605" height="91">
-              <img class="super-logo" src="assets/super-duo.svg" alt="Super Duolingo" width="339" height="55">
-            </picture>
-            <button class="duo-button super-button" type="button" data-auth="register">1 неделя бесплатно</button>
+            <div class="super-wordmark" aria-label="Anatomio — практика анатомии"><span>Anatomio</span><strong>ПРАКТИКА</strong></div>
+            <a class="anatomio-button super-button" href="#courseList">Выбрать тему</a>
           </div>
         </div>
       </section>
 
-      <section class="test-section" id="test" aria-label="Duolingo English Test">
+      <section class="test-section" id="test" aria-label="Проверка знаний по анатомии">
         <div class="test-panel">
           <div class="test-copy">
-            <h2>duolingo english test</h2>
-            <p>Представляем удобный, быстрый и недорогой тест на знание английского, основанный на новейших исследованиях в областях искусственного интеллекта и оценки владения языком. Теперь каждый может пройти надёжный тест в комфортной обстановке и в удобное время.</p>
-            <a class="duo-button duo-button-secondary test-link" href="https://englishtest.duolingo.com/ru" target="_blank" rel="noreferrer">Получить сертификат</a>
+            <h2>Проверьте, что запомнили</h2>
+            <p>Проверьте знания по основным темам анатомии: костям, мышцам, органам и системам организма. Возвращайтесь к материалам и повторяйте сложные понятия в удобном темпе.</p>
+            <a class="anatomio-button anatomio-button-secondary test-link" href="#courseList">Выбрать тему</a>
           </div>
           <div class="test-visual lottie-visual" data-lottie="assets/lottie/live/test-2c6d.json" data-segment="0,115">
             <img class="lottie-fallback" src="assets/live/test-placeholder.svg" alt="" loading="lazy"><div class="lottie-host" aria-hidden="true"></div>
@@ -643,11 +633,11 @@
         </div>
       </section>
 
-      <section class="closing-cta" id="closing" aria-label="Начните учиться с Duolingo">
+      <section class="closing-cta" id="closing" aria-label="Начните изучать анатомию с Anatomio">
         <div class="closing-inner">
           <div class="closing-copy">
-            <h2>Изучайте языки с Duolingo</h2>
-            <button class="duo-button duo-button-primary closing-button" type="button" data-auth="register">Начать</button>
+            <h2>Понимайте, как устроено тело человека</h2>
+            <button class="anatomio-button anatomio-button-primary closing-button" type="button" data-auth="register">Начать обучение</button>
           </div>
           <div class="closing-art lottie-visual" data-lottie="assets/lottie/live/closing-main-9b9c.json" data-segment="0,110">
             <img class="lottie-fallback" src="assets/live/closing-placeholder.svg" alt="" loading="lazy"><div class="lottie-host" aria-hidden="true"></div><div class="lottie-host closing-hover-host" aria-hidden="true"></div>
@@ -661,31 +651,31 @@
   <footer class="footer">
     <div class="footer-columns">
       <div class="footer-column">
-        <div class="footer-group"><h3>О нас</h3><ul>
-          <li><a href="#features">Курсы</a></li><li><a href="#features">Миссия</a></li><li><a href="#features">Методология</a></li><li><a href="#features">Эффективность</a></li><li><a href="#features">Ценности Duolingo</a></li><li><a href="#features">Исследования</a></li><li><a href="#features">Вакансии</a></li><li><a href="#features">Магазин</a></li><li><a href="#features">СМИ</a></li><li><a href="#features">Инвесторы</a></li><li><a href="#features">Связь с нами</a></li>
+        <div class="footer-group"><h3>Темы анатомии</h3><ul>
+          <li><a href="#courseList">Кости и скелет</a></li><li><a href="#courseList">Мышцы</a></li><li><a href="#courseList">Сердце и сосуды</a></li><li><a href="#courseList">Внутренние органы</a></li><li><a href="#courseList">Нервная система</a></li>
         </ul></div>
       </div>
       <div class="footer-column">
-        <div class="footer-group"><h3>Продукты</h3><ul>
-          <li><a href="#top">Duolingo</a></li><li><a href="#features">Duolingo for Schools</a></li><li><a href="#test">Duolingo English Test</a></li><li><a href="#features">Подкаст</a></li><li><a href="#features">Duolingo for Business</a></li><li><a href="#super">Super Duolingo</a></li><li><a href="#super">Super Duolingo в подарок</a></li><li><a href="#super">Duolingo Max</a></li>
+        <div class="footer-group"><h3>Как учиться</h3><ul>
+          <li><a href="#features">Короткие уроки</a></li><li><a href="#features">Наглядные объяснения</a></li><li><a href="#app">Повторение материала</a></li><li><a href="#test">Проверка знаний</a></li>
         </ul></div>
       </div>
       <div class="footer-column">
-        <div class="footer-group"><h3>Приложение</h3><ul>
-          <li><a href="https://play.google.com/store/apps/details?id=com.duolingo">Duolingo для Android</a></li><li><a href="https://apps.apple.com/ru/app/duolingo-language-lessons/id570060128">Duolingo для iOS</a></li>
+        <div class="footer-group"><h3>Материалы</h3><ul>
+          <li><a href="#courseList">Выбрать тему</a></li><li><a href="#features">Основы анатомии</a></li><li><a href="#test">Самопроверка</a></li><li><a href="#closing">Начать обучение</a></li>
         </ul></div>
       </div>
       <div class="footer-column">
-        <div class="footer-group"><h3>Помощь и поддержка</h3><ul>
-          <li><a href="#top">Справочный центр</a></li><li><a href="#features">Duolingo for Schools</a></li><li><a href="#test">Duolingo English Test</a></li><li><a href="#top">Статус</a></li>
+        <div class="footer-group"><h3>О Anatomio</h3><ul>
+          <li><a href="#top">Главная</a></li><li><a href="#features">Подход к обучению</a></li><li><a href="#app">Учитесь в своём ритме</a></li><li><a href="#courseList">Учебные темы</a></li>
         </ul></div>
       </div>
       <div class="footer-column">
-        <div class="footer-group"><h3>Условия предоставления услуг</h3><ul>
-          <li><a href="#top">Правила сообщества</a></li><li><a href="#top">Условия</a></li><li><a href="#top">Конфиденциальность</a></li>
+        <div class="footer-group"><h3>Демо-версия</h3><ul>
+          <li><a href="#top" data-auth="register">Создать аккаунт</a></li><li><a href="#top" data-auth="login">Войти</a></li><li><a href="#top">Форма не отправляет данные</a></li>
         </ul></div>
-        <div class="footer-group"><h3>Мы в соцсетях</h3><ul>
-          <li><a href="#top">Блог</a></li><li><a href="#top">Instagram</a></li><li><a href="#top">TikTok</a></li><li><a href="#top">Twitter</a></li><li><a href="#top">YouTube</a></li><li><a href="#top">LinkedIn</a></li>
+        <div class="footer-group"><h3>На главную</h3><ul>
+          <li><a href="#top">Anatomio</a></li><li><a href="#closing">Начать занятия</a></li>
         </ul></div>
       </div>
     </div>
@@ -703,12 +693,12 @@
       <button class="modal-close" id="modalClose" type="button" aria-label="Закрыть">×</button>
       <div class="modal-brand"><img src="assets/anatomio-logo.png" alt="Anatomio — Learn, Practice, Master"></div>
       <h2 id="modalTitle">Создайте аккаунт</h2>
-      <p class="modal-intro" id="modalIntro">Начните изучать язык бесплатно.</p>
+      <p class="modal-intro" id="modalIntro">Начните разбирать анатомию с основ.</p>
       <form id="authForm">
         <div id="nameFieldWrap"><label class="form-label" for="userName">Как вас зовут?</label><input class="form-input" id="userName" name="name" placeholder="Ваше имя" autocomplete="name"></div>
         <label class="form-label" for="userEmail">Электронная почта</label><input class="form-input" id="userEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
         <label class="form-label" for="userPassword">Пароль</label><input class="form-input" id="userPassword" name="password" type="password" placeholder="Не менее 6 символов" autocomplete="new-password" minlength="6" required>
-        <button class="duo-button duo-button-primary modal-submit" id="submitAuth" type="submit">Создать аккаунт</button>
+        <button class="anatomio-button anatomio-button-primary modal-submit" id="submitAuth" type="submit">Создать аккаунт</button>
       </form>
       <p class="modal-note">Демо-форма: данные никуда не отправляются.</p>
       <p class="modal-switch" id="modalSwitch">Уже зарегистрированы? <button type="button" data-auth="login">Войти</button></p>
@@ -735,7 +725,7 @@
       const courseList = document.getElementById('courseList');
       const heroArt = document.getElementById('heroArt');
       const topbar = document.getElementById('topbar');
-      const heroStartButton = document.querySelector('.hero-buttons .duo-button-primary');
+      const heroStartButton = document.querySelector('.hero-buttons .anatomio-button-primary');
       let heroLoop = null;
       let authMode = 'register';
       let lastFocused = null;
@@ -831,7 +821,7 @@
         lastFocused = document.activeElement;
         const login = mode === 'login';
         modalTitle.textContent = login ? 'С возвращением!' : 'Создайте аккаунт';
-        modalIntro.textContent = login ? 'Войдите, чтобы продолжить учёбу.' : 'Начните изучать язык бесплатно.';
+        modalIntro.textContent = login ? 'Войдите, чтобы продолжить занятия.' : 'Начните разбирать анатомию с основ.';
         nameFieldWrap.hidden = login;
         userName.required = !login;
         userPassword.autocomplete = login ? 'current-password' : 'new-password';
@@ -859,7 +849,7 @@
         siteLanguageMenu.querySelectorAll('[role="option"]').forEach(item => item.setAttribute('aria-selected', String(item === option)));
         siteLanguageMenu.classList.remove('open');
         siteLanguageButton.setAttribute('aria-expanded', 'false');
-        showToast('В этом макете перевод интерфейса не подключён.');
+        showToast('В этой демо-версии перевод интерфейса пока не подключён.');
       }));
       document.addEventListener('click', event => {
         if (!event.target.closest('.site-language-wrap')) {
@@ -872,7 +862,7 @@
         if (course) {
           const name = course.dataset.course;
           courseList.querySelectorAll('.course-item').forEach(item => item.setAttribute('aria-current', String(item === course)));
-          showToast(`Выбран курс: ${name}`);
+          showToast(`Выбрана тема: ${name}`);
         }
       });
       document.querySelectorAll('[data-scroll-courses]').forEach(button => button.addEventListener('click', () => {

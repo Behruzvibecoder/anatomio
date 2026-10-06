@@ -1,6 +1,6 @@
-# Duolingo Russian Homepage Recreation
+# Anatomio — Anatomy Learning Landing Page
 
-An unofficial, static front-end recreation of the Russian Duolingo landing page, built for visual and interaction practice. It is not affiliated with, endorsed by, or connected to Duolingo.
+A Russian-language, static landing-page prototype for **Anatomio**, a project focused on learning human anatomy through clear explanations, visual topics, and short study sessions.
 
 ## Run locally
 
@@ -15,9 +15,10 @@ Then open `http://localhost:4173`.
 ## Demo behavior
 
 - Sign-in and sign-up dialogs are demonstration-only. They do not create accounts, authenticate users, or send form data anywhere.
-- Language and course controls provide local UI feedback only.
+- Anatomy-topic controls provide local UI feedback only; they do not load course content.
 - The landing page and animations are static client-side assets; there is no backend.
+- The language selector is a visual demo; translated interfaces are not connected.
 
-## Rights and attribution
+## Third-party assets
 
-Duolingo names, logos, fonts, illustrations, and other branded assets remain the property of their respective rights holders. This project is an unofficial recreation; inclusion of those assets does not grant redistribution rights. Review the relevant rights-holder terms before publishing or reusing the assets.
+Some legacy illustrations, animations, and type assets inherited from the original visual reference remain in this prototype. They belong to their respective rights holders; the Anatomio branding and copy do not grant rights to redistribute them. Review the applicable licenses before reusing or publishing those assets.
