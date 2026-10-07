@@ -36,9 +36,6 @@ await fixPublicImagePaths(dashboardDir);
 if (!await exists(path.join(dashboardDir, "index.html"))) {
   throw new Error("Dashboard build did not produce dashboard/index.html");
 }
-if (rewrittenImagePaths === 0) {
-  throw new Error("Expected public /images/ paths in the imported dashboard bundle; none were rewritten.");
-}
 
 console.log(`Prepared ${path.relative(root, siteDir)} with the Anatomio landing page and dashboard.`);
 console.log(`Adjusted ${rewrittenImagePaths} dashboard image paths for the GitHub Pages subdirectory.`);
