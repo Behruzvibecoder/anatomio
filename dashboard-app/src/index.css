@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-paper: #f3f4f0;
+  --color-ink: #1b1d18;
+  --color-ink-soft: #2b2e27;
+  --color-mute: #797e6f;
+  --color-mute-soft: #a6ab9b;
+
+  --color-brand: #d8f24f;
+  --color-brand-deep: #a8c93b;
+  --color-brand-soft: #ebf7c2;
+  --color-brand-ink: #7c9a2e;
+
+  --color-lilac: #ede6fb;
+  --color-lilac-ink: #7b5ad6;
+  --color-peach: #fce5da;
+  --color-peach-ink: #d4683b;
+
+  --color-fog: #f7f8f4;
+  --color-sprout: #f1f8dc;
+  --color-ember: #ee6a2f;
+  --color-ember-soft: #ffe4da;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-brand);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-deep);
+  outline-offset: 2px;
+}
+
+/* 👋 slow, friendly wave */
+.animate-wave {
+  animation: eduplex-wave 2.8s ease-in-out infinite;
+  transform-origin: 72% 72%;
+}
+
+@keyframes eduplex-wave {
+  0%,
+  60%,
+  100% {
+    transform: rotate(0deg);
+  }
+  10%,
+  30% {
+    transform: rotate(16deg);
+  }
+  20%,
+  40% {
+    transform: rotate(-8deg);
+  }
+}
+
+/* thin, quiet scrollbars inside panels */
+.nice-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-mute-soft) transparent;
+}
+.nice-scroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.nice-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-mute-soft);
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-wave {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

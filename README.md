@@ -1,24 +1,34 @@
 # Anatomio — Anatomy Learning Landing Page
 
-A Russian-language, static landing-page prototype for **Anatomio**, a project focused on learning human anatomy through clear explanations, visual topics, and short study sessions.
+A static, three-language landing-page prototype for **Anatomio**. Successful demo registration opens the supplied learning dashboard at `/dashboard/`; the dashboard source is kept exactly as provided.
 
 ## Run locally
 
-From this directory, start a static file server:
+For the landing page, start a static file server from this directory:
 
 ```bash
 python3 -m http.server 4173 --bind 0.0.0.0
 ```
 
-Then open `http://localhost:4173`.
+To build the complete Pages site, including the dashboard route:
+
+```bash
+npm ci --prefix dashboard-app
+npm run build --prefix dashboard-app -- --base=./
+node scripts/prepare-pages.mjs
+```
+
+The assembled static site is written to `_site/`.
 
 ## Demo behavior
 
-- Sign-in and sign-up dialogs are demonstration-only. They do not create accounts, authenticate users, or send form data anywhere.
+- Sign-in and sign-up are demonstration-only: they do not create accounts, authenticate users, or send form data to a server.
+- Completing the demo registration opens the supplied `/dashboard/` interface. Its sample profile, course data, and UI state are also local demonstrations and do not persist to a backend.
+- The supplied dashboard retains its original **Eduplex** label and sample course content, unchanged.
 - Anatomy-topic controls provide local UI feedback only; they do not load course content.
-- The landing page and animations are static client-side assets; there is no backend.
-- The language selector is a visual demo; translated interfaces are not connected.
+- The landing page, dashboard, and animations are client-side; there is no backend.
+- The landing page language selector supports Russian, English, and Uzbek.
 
 ## Third-party assets
 
-Some legacy illustrations, animations, and type assets inherited from the original visual reference remain in this prototype. They belong to their respective rights holders; the Anatomio branding and copy do not grant rights to redistribute them. Review the applicable licenses before reusing or publishing those assets.
+Some landing-page illustrations, animations, type assets, and assets within the supplied dashboard belong to their respective rights holders. Review applicable licenses before reusing or publishing them.

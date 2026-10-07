@@ -24,12 +24,24 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: dashboard-app/package-lock.json
+      - name: Install dashboard dependencies
+        run: npm ci --prefix dashboard-app --no-audit --no-fund
+      - name: Build dashboard
+        run: npm run build --prefix dashboard-app -- --base=./
+      - name: Assemble static site
+        run: node scripts/prepare-pages.mjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site files
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

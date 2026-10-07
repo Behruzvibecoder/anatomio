@@ -9,3 +9,8 @@ node_modules/
 Thumbs.db
 *.swp
 *.swo
+
+# Imported dashboard build outputs
+/dashboard-app/node_modules/
+/dashboard-app/dist/
+/_site/
