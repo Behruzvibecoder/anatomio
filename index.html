@@ -896,14 +896,7 @@
         closeAuth();
         authForm.reset();
         const text = window.AnatomioI18n.getRuntime();
-        if (login) {
-          showToast(text.demoLogin);
-          return;
-        }
-        showToast(text.demoRegister(name));
-        window.setTimeout(() => {
-          window.location.assign(new URL('dashboard/', window.location.href).href);
-        }, 550);
+        showToast(login ? text.demoLogin : text.demoRegister(name));
       });
     })();
   </script>
