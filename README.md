@@ -41,7 +41,7 @@ The dashboard was laid out around two illustrations that are not in the reposito
 | File | Card | What fits best |
 | --- | --- | --- |
 | `dashboard-app/public/images/app-art.png` | sidebar *Download our mobile app* tile | square (1:1), light background: the tile multiplies it into the brand green |
-| `dashboard-app/public/images/premium-art.png` | *Go Premium* card | wide (about 2:1), dark background, subject on the right: the card covers its full area and blends it in screen mode |
+| `dashboard-app/public/images/premium-art.png` | *Go Premium* card | wide (about 2:1), background matching the card's ink (`#1b1d18`), subject on the right: the card covers its full area |
 
 Until those files exist, bundled SVG stand-ins keep the layout intact.
 

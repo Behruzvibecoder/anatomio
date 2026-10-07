@@ -77,9 +77,9 @@ export default function RightRail() {
       <Section className="relative overflow-hidden rounded-[22px] bg-ink p-5 text-white">
         <Artwork
           name="premium"
-          className="pointer-events-none absolute inset-0 size-full object-cover object-right opacity-90 mix-blend-screen"
+          className="pointer-events-none absolute inset-0 size-full object-cover object-right"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/55 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-transparent" />
 
         <div className="relative">
           <div className="flex items-center gap-2">
