@@ -45,6 +45,20 @@ The dashboard was laid out around two illustrations that are not in the reposito
 
 Until those files exist, bundled SVG stand-ins keep the layout intact.
 
+## Anatomy icons
+
+The uploaded **Anatomy Icon Set** (35 line icons — skeleton, skull, heart, brain, lungs, kidney, liver, stomach, spine and so on) lives in `dashboard-app/src/assets/anatomy-icons/` as compact SVGs, one file per organ with a readable name.
+
+Use them through the component, which paints each icon with a CSS mask so it takes the colour of whatever it sits in — the same way the lucide icons behave:
+
+```tsx
+import { AnatomyIcon } from "./anatomy-icon";
+
+<AnatomyIcon name="heart" className="size-[18px]" />
+```
+
+`AnatomyIconName` lists the available names, and each file costs under 5 KB.
+
 ## Third-party assets
 
-Some landing-page illustrations, animations, type assets, and assets within the supplied dashboard belong to their respective rights holders. Review applicable licenses before reusing or publishing them.
+Some landing-page illustrations, animations, type assets, the anatomy icon set, and assets within the supplied dashboard belong to their respective rights holders. Review applicable licenses before reusing or publishing them.
