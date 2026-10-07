@@ -5,18 +5,18 @@ import { Avatar, avatarFallback, type AvatarTone } from "../components/kit";
 import { useStore, type Post } from "../store";
 
 const topics = [
-  { tag: "UIDesign", posts: 120 },
-  { tag: "Typography", posts: 102 },
-  { tag: "3DDesign", posts: 84 },
-  { tag: "UXResearch", posts: 66 },
-  { tag: "Photography", posts: 48 },
+  { tag: "Neuroanatomy", posts: 120 },
+  { tag: "Osteology", posts: 102 },
+  { tag: "Cardiology", posts: 84 },
+  { tag: "Histology", posts: 66 },
+  { tag: "Radiology", posts: 48 },
 ];
 
 const members: { name: string; points: number; tone: AvatarTone }[] = [
-  { name: "Micheal Andrew", points: 2400, tone: "peach" },
-  { name: "Natalia Varman", points: 2050, tone: "violet" },
-  { name: "Anna Lee", points: 1700, tone: "mint" },
-  { name: "John Carter", points: 1350, tone: "rose" },
+  { name: "Dr. Micheal Andrew", points: 2400, tone: "peach" },
+  { name: "Dr. Natalia Varman", points: 2050, tone: "violet" },
+  { name: "Dr. Anna Lee", points: 1700, tone: "mint" },
+  { name: "Dr. John Carter", points: 1350, tone: "rose" },
 ];
 
 export default function Community() {

@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Plus, Sigma, LineChart, Database } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import { AnatomyIcon } from "./anatomy-icon";
 import { Heading, Logo, Section, Tile } from "./ui";
 import { Artwork } from "./art";
 
@@ -9,27 +10,27 @@ import { Artwork } from "./art";
 /* ------------------------------------------------------------------ */
 const assignments = [
   {
-    title: "Methods of data",
+    title: "Axial skeleton quiz",
     due: "12 July, 10:30 AM",
     status: "In progress",
     tone: "brand" as const,
-    icon: Sigma,
+    icon: "bone" as const,
     pill: { bg: "#ede6fb", fg: "#7b5ad6" },
   },
   {
-    title: "Market Research",
+    title: "Cardiac cycle report",
     due: "24 June, 11:00 AM",
     status: "Completed",
     tone: "lilac" as const,
-    icon: LineChart,
+    icon: "heart" as const,
     pill: { bg: "#d7ffb8", fg: "#3f8f13" },
   },
   {
-    title: "Data Collection",
+    title: "Lung volumes test",
     due: "12 May, 11:00 AM",
     status: "Upcoming",
     tone: "peach" as const,
-    icon: Database,
+    icon: "lungs" as const,
     pill: { bg: "#fce5da", fg: "#d4683b" },
   },
 ];
@@ -186,7 +187,7 @@ export default function RightRail() {
                 className="group flex items-center gap-3 rounded-[15px] p-2.5 transition-colors duration-300 hover:bg-paper"
               >
                 <Tile tone={a.tone} className="size-[38px] rounded-[12px]">
-                  <a.icon className="size-[17px]" strokeWidth={2} />
+                  <AnatomyIcon name={a.icon} className="size-[17px]" />
                 </Tile>
                 <div className="min-w-0">
                   <p className="truncate text-[12px] font-semibold leading-tight">{a.title}</p>

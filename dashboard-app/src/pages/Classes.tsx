@@ -22,13 +22,13 @@ const tone = {
 type Slot = { title: string; day: number; start: number; dur: number; tone: keyof typeof tone };
 
 const slots: Slot[] = [
-  { title: "Design System", day: 0, start: 9, dur: 1, tone: "peach" },
-  { title: "Typography", day: 1, start: 10, dur: 1.5, tone: "lilac" },
-  { title: "Color Style", day: 2, start: 11, dur: 1, tone: "mint" },
-  { title: "Visual Design", day: 3, start: 9, dur: 2, tone: "peach" },
-  { title: "UX Research", day: 4, start: 12, dur: 1, tone: "lilac" },
-  { title: "Photography", day: 0, start: 13, dur: 1.5, tone: "mint" },
-  { title: "Usability Test", day: 2, start: 13, dur: 1, tone: "sun" },
+  { title: "Skeletal System", day: 0, start: 9, dur: 1, tone: "peach" },
+  { title: "Neuroanatomy", day: 1, start: 10, dur: 1.5, tone: "lilac" },
+  { title: "Cardiovascular System", day: 2, start: 11, dur: 1, tone: "mint" },
+  { title: "Regional Anatomy", day: 3, start: 9, dur: 2, tone: "peach" },
+  { title: "Histology", day: 4, start: 12, dur: 1, tone: "lilac" },
+  { title: "Respiratory System", day: 0, start: 13, dur: 1.5, tone: "mint" },
+  { title: "Anatomy Quiz", day: 2, start: 13, dur: 1, tone: "sun" },
 ];
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -49,13 +49,13 @@ type LiveClass = {
 };
 
 const classes: LiveClass[] = [
-  { id: "ds", title: "Design System", tutor: "Micheal Andrew", when: "Today, 10:00 AM", status: "live", tone: "peach" },
-  { id: "ty", title: "Typography", tutor: "Natalia Varman", when: "Today, 02:30 PM", status: "upcoming", tone: "lilac" },
-  { id: "cs", title: "Color Style", tutor: "John Carter", when: "Tomorrow, 11:00 AM", status: "upcoming", tone: "mint" },
-  { id: "vd", title: "Visual Design", tutor: "Anna Lee", when: "Wed, 09:00 AM", status: "upcoming", tone: "peach" },
-  { id: "ph", title: "Photography Basics", tutor: "Natalia Varman", when: "Yesterday, 03:00 PM", status: "past", tone: "lilac" },
-  { id: "ut", title: "Usability Test", tutor: "John Carter", when: "Mon, 01:00 PM", status: "past", tone: "sun" },
-  { id: "wf", title: "Wireframing", tutor: "Anna Lee", when: "Fri, 11:00 AM", status: "past", tone: "mint" },
+  { id: "sk", title: "Skeletal System", tutor: "Dr. Micheal Andrew", when: "Today, 10:00 AM", status: "live", tone: "peach" },
+  { id: "ne", title: "Neuroanatomy", tutor: "Dr. Natalia Varman", when: "Today, 02:30 PM", status: "upcoming", tone: "lilac" },
+  { id: "cv", title: "Cardiovascular System", tutor: "Dr. John Carter", when: "Tomorrow, 11:00 AM", status: "upcoming", tone: "mint" },
+  { id: "ra", title: "Regional Anatomy", tutor: "Dr. Anna Lee", when: "Wed, 09:00 AM", status: "upcoming", tone: "peach" },
+  { id: "hi", title: "Histology Basics", tutor: "Dr. Natalia Varman", when: "Yesterday, 03:00 PM", status: "past", tone: "lilac" },
+  { id: "qu", title: "Anatomy Quiz", tutor: "Dr. John Carter", when: "Mon, 01:00 PM", status: "past", tone: "sun" },
+  { id: "em", title: "Embryology", tutor: "Dr. Anna Lee", when: "Fri, 11:00 AM", status: "past", tone: "mint" },
 ];
 
 const tabs: { value: LiveTab; label: string }[] = [
