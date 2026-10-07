@@ -229,7 +229,7 @@ export default function Classes() {
                       <button
                         type="button"
                         onClick={() => toast(`Joining ${c.title}…`)}
-                        className="mt-3 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2 text-[11.5px] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-deep hover:shadow-[0_14px_24px_-12px_rgba(168,201,59,0.9)]"
+                        className="mt-3 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2 text-[11.5px] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-deep hover:shadow-[0_14px_24px_-12px_rgba(70,163,2,0.9)]"
                       >
                         <span className="relative flex size-2">
                           <span className="absolute inline-flex size-full animate-ping rounded-full bg-ember opacity-70" />

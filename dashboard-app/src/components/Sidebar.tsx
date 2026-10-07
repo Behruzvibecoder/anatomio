@@ -11,6 +11,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Logo } from "./ui";
+import appArt from "../assets/app-art.svg";
 import { hrefFor, routes, type PageKey } from "../router";
 import { useStore } from "../store";
 
@@ -43,7 +44,7 @@ export default function Sidebar({
       {/* brand */}
       <a href="#/" onClick={onNavigate} className="flex items-center gap-2.5 px-1.5 py-2">
         <Logo className="size-9" />
-        <span className="text-[18px] font-semibold tracking-[-0.02em]">Eduplex</span>
+        <span className="text-[18px] font-semibold tracking-[-0.02em]">Anatomio</span>
       </a>
 
       {/* nav */}
@@ -60,7 +61,7 @@ export default function Sidebar({
               onClick={onNavigate}
               className={`group flex w-full items-center gap-3 rounded-full px-3.5 py-2.5 text-[12.5px] transition-all duration-300 ${
                 isActive
-                  ? "bg-brand font-semibold text-ink shadow-[0_12px_26px_-14px_rgba(216,242,79,0.9)]"
+                  ? "bg-brand font-semibold text-ink shadow-[0_12px_26px_-14px_rgba(88,204,2,0.9)]"
                   : "font-medium text-white/60 hover:bg-white/10 hover:text-white"
               }`}
             >
@@ -87,10 +88,10 @@ export default function Sidebar({
       {/* mobile app promo */}
       <div className="relative mt-auto overflow-hidden rounded-[20px] bg-brand pt-[104px]">
         <img
-          src="images/app-art.png"
+          src={appArt}
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-2 top-1 h-[112px] w-[calc(100%-16px)] object-contain mix-blend-multiply"
+          className="pointer-events-none absolute inset-x-2 top-1 h-[112px] w-[calc(100%-16px)] object-contain"
           onError={(e) => {
             e.currentTarget.style.display = "none";
           }}
@@ -103,7 +104,7 @@ export default function Sidebar({
           </p>
           <button
             type="button"
-            aria-label="Download the Eduplex mobile app"
+            aria-label="Download the Anatomio mobile app"
             onClick={() => toast("The mobile app is coming soon")}
             className="grid size-9 shrink-0 place-items-center rounded-full bg-ink text-brand transition-all duration-300 hover:rotate-45 hover:bg-ink-soft"
           >

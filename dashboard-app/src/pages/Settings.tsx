@@ -109,7 +109,7 @@ export default function Settings() {
             <button
               type="button"
               onClick={() => file.current?.click()}
-              className="rounded-full bg-[#cfec3f] px-5 py-2.5 text-[12px] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-deep"
+              className="rounded-full bg-brand px-5 py-2.5 text-[12px] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-deep"
             >
               Change photo
             </button>

@@ -31,7 +31,7 @@ const TODAY = new Date(2023, 7, 16);
 const TODAY_KEY = keyOf(TODAY);
 
 const toneStyle: Record<EventTone, { bg: string; bar: string }> = {
-  lime: { bg: "#cdeb43", bar: "#cdeb43" },
+  lime: { bg: "#a5ed6e", bar: "#a5ed6e" },
   lilac: { bg: "#e4dcfb", bar: "#cdbdf6" },
   peach: { bg: "#ffe0d0", bar: "#ffc4a8" },
   mint: { bg: "#d6f3e2", bar: "#a9e1c2" },
@@ -154,7 +154,7 @@ export default function Calendars() {
                 transition={{ duration: 0.3, delay: Math.min(idx, 20) * 0.012 }}
                 aria-label={`${fmtDate(k)}${list.length ? `, ${list.length} event${list.length > 1 ? "s" : ""}` : ""}. Add an event`}
                 className={`group relative flex min-h-[62px] flex-col rounded-[14px] p-1.5 text-left transition-colors duration-300 sm:min-h-[96px] sm:rounded-[16px] sm:p-2 lg:min-h-[116px] ${
-                  isToday ? "bg-[#f6fbdd] ring-1 ring-brand-deep/40" : "bg-fog hover:bg-[#eef0e7]"
+                  isToday ? "bg-sprout ring-1 ring-brand-deep/40" : "bg-fog hover:bg-[#eef0e7]"
                 }`}
               >
                 <span className="flex items-center justify-between px-1">
@@ -241,7 +241,7 @@ export default function Calendars() {
         <button
           type="button"
           onClick={() => setModalDate(TODAY_KEY)}
-          className="mt-5 flex h-11 w-full items-center justify-center gap-1.5 rounded-full bg-[#cfec3f] text-[13px] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-deep hover:shadow-[0_16px_28px_-14px_rgba(168,201,59,0.95)]"
+          className="mt-5 flex h-11 w-full items-center justify-center gap-1.5 rounded-full bg-brand text-[13px] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-deep hover:shadow-[0_16px_28px_-14px_rgba(70,163,2,0.95)]"
         >
           <Plus className="size-4" strokeWidth={2.6} />
           Add Event

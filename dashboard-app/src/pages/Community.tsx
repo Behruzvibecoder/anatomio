@@ -88,7 +88,7 @@ export default function Community() {
           </label>
           <button
             type="submit"
-            className={`h-11 shrink-0 rounded-full bg-[#cfec3f] px-6 text-[13px] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-deep sm:h-12 sm:px-8 ${
+            className={`h-11 shrink-0 rounded-full bg-brand px-6 text-[13px] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-deep sm:h-12 sm:px-8 ${
               draft.trim() ? "" : "opacity-70"
             }`}
           >
@@ -162,7 +162,7 @@ export default function Community() {
                       on
                         ? "bg-ink text-white"
                         : i === 0
-                          ? "bg-[#cfec3f] hover:bg-brand-deep"
+                          ? "bg-brand hover:bg-brand-deep"
                           : "bg-[#f3f4ee] hover:bg-brand-soft"
                     }`}
                   >

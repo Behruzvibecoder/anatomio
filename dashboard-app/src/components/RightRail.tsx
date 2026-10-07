@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, Sigma, LineChart, Database } from "lucide-react";
 import { Heading, Logo, Section, Tile } from "./ui";
+import premiumArt from "../assets/premium-art.svg";
 
 /* ------------------------------------------------------------------ */
 /*  Assignments                                                        */
@@ -21,7 +22,7 @@ const assignments = [
     status: "Completed",
     tone: "lilac" as const,
     icon: LineChart,
-    pill: { bg: "#ebf7c2", fg: "#7c9a2e" },
+    pill: { bg: "#d7ffb8", fg: "#3f8f13" },
   },
   {
     title: "Data Collection",
@@ -75,7 +76,7 @@ export default function RightRail() {
       {/* ---------------- Go Premium ---------------- */}
       <Section className="relative overflow-hidden rounded-[22px] bg-ink p-5 text-white">
         <img
-          src="images/premium-art.png"
+          src={premiumArt}
           alt=""
           aria-hidden="true"
           className="pointer-events-none absolute -right-3 top-0 h-[168px] w-[68%] object-contain opacity-90 mix-blend-screen"
@@ -92,7 +93,7 @@ export default function RightRail() {
         <div className="relative">
           <div className="flex items-center gap-2">
             <Logo className="size-7" />
-            <span className="text-[13px] font-semibold tracking-[-0.02em]">Eduplex</span>
+            <span className="text-[13px] font-semibold tracking-[-0.02em]">Anatomio</span>
           </div>
 
           <h2 className="mt-7 text-[19px] font-semibold leading-[1.15] tracking-[-0.02em]">
@@ -104,7 +105,7 @@ export default function RightRail() {
 
           <button
             type="button"
-            className="mt-5 rounded-full bg-brand px-5 py-2.5 text-[11px] font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_18px_34px_-16px_rgba(216,242,79,0.65)]"
+            className="mt-5 rounded-full bg-brand px-5 py-2.5 text-[11px] font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_18px_34px_-16px_rgba(88,204,2,0.65)]"
           >
             Get Access
           </button>

@@ -1,7 +1,17 @@
 @import "tailwindcss";
 
+/* The landing page's typeface travels with the brand, so the dashboard
+   ships the same self-hosted font instead of a remote one. */
+@font-face {
+  font-family: "Anatomio Sans";
+  src: url("./assets/anatomio-sans.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 @theme {
-  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "Anatomio Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --color-paper: #f3f4f0;
   --color-ink: #1b1d18;
@@ -9,10 +19,11 @@
   --color-mute: #797e6f;
   --color-mute-soft: #a6ab9b;
 
-  --color-brand: #d8f24f;
-  --color-brand-deep: #a8c93b;
-  --color-brand-soft: #ebf7c2;
-  --color-brand-ink: #7c9a2e;
+  /* sampled from the Anatomio landing page (--owl / --owl-dark / --sea-sponge) */
+  --color-brand: #58cc02;
+  --color-brand-deep: #46a302;
+  --color-brand-soft: #d7ffb8;
+  --color-brand-ink: #3f8f13;
 
   --color-lilac: #ede6fb;
   --color-lilac-ink: #7b5ad6;
@@ -20,7 +31,7 @@
   --color-peach-ink: #d4683b;
 
   --color-fog: #f7f8f4;
-  --color-sprout: #f1f8dc;
+  --color-sprout: #eef8dd;
   --color-ember: #ee6a2f;
   --color-ember-soft: #ffe4da;
 }
@@ -49,11 +60,11 @@ body {
 
 /* 👋 slow, friendly wave */
 .animate-wave {
-  animation: eduplex-wave 2.8s ease-in-out infinite;
+  animation: anatomio-wave 2.8s ease-in-out infinite;
   transform-origin: 72% 72%;
 }
 
-@keyframes eduplex-wave {
+@keyframes anatomio-wave {
   0%,
   60%,
   100% {

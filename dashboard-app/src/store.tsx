@@ -238,6 +238,13 @@ interface Store {
 
 const Ctx = createContext<Store | null>(null);
 
+/* The landing page hands the demo visitor over as ?name=…&email=…, so the
+   welcome heading can greet whoever just registered. Nothing is stored. */
+function signupValue(key: "name" | "email") {
+  if (typeof window === "undefined") return "";
+  return new URLSearchParams(window.location.search).get(key)?.trim() ?? "";
+}
+
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [notifs, setNotifs] = useState(seedNotifs);
   const [convos, setConvos] = useState(seedConvos);
@@ -245,13 +252,13 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [events, setEvents] = useState(seedEvents);
   const [following, setFollowing] = useState<string[]>([]);
   const [savedCourses, setSavedCourses] = useState<number[]>([2, 4, 6]);
-  const [profile, setProfile] = useState<Profile>({
-    name: "Taylor Morgan",
-    email: "taylor@eduplex.com",
+  const [profile, setProfile] = useState<Profile>(() => ({
+    name: signupValue("name") || "Taylor Morgan",
+    email: signupValue("email") || "taylor@anatomio.app",
     phone: "+1 555 012 3456",
     location: "New York, USA",
-    avatar: "images/avatar.jpg",
-  });
+    avatar: null,
+  }));
   const [prefs, setPrefs] = useState<Prefs>({
     email: true,
     push: true,

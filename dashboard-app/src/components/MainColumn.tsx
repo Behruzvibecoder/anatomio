@@ -240,7 +240,7 @@ export default function MainColumn() {
                         className="w-[9px] origin-bottom rounded-full transition-colors duration-300"
                         style={{
                           height: h,
-                          backgroundColor: isActive ? "#d8f24f" : "#1b1d18",
+                          backgroundColor: isActive ? "#58cc02" : "#1b1d18",
                         }}
                       />
                     </div>

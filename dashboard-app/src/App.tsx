@@ -46,7 +46,7 @@ function Shell() {
   const first = profile.name.trim().split(" ")[0] || "there";
 
   useEffect(() => {
-    document.title = page === "dashboard" ? "Eduplex — Dashboard" : `${label} — Eduplex`;
+    document.title = page === "dashboard" ? "Anatomio — Dashboard" : `${label} — Anatomio`;
   }, [page, label]);
 
   useEffect(() => {
@@ -132,7 +132,7 @@ function Shell() {
               <Menu className="size-5" />
             </button>
 
-            <a href="#/" className="shrink-0 lg:hidden" aria-label="Eduplex home">
+            <a href="#/" className="shrink-0 lg:hidden" aria-label="Anatomio home">
               <Logo className="size-9" />
             </a>
 

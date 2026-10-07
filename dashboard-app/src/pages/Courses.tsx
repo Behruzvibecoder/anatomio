@@ -231,7 +231,7 @@ function CourseCard({
               whileInView={{ width: `${c.progress}%` }}
               viewport={{ once: true }}
               transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
-              className="h-full rounded-full bg-[#cfec3f]"
+              className="h-full rounded-full bg-brand"
             />
           </div>
           <span className="w-10 text-right text-[12.5px] font-bold tabular-nums">{c.progress}%</span>

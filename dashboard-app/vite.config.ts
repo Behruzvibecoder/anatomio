@@ -16,4 +16,10 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  server: {
+    host: true,
+    // Dev previews are proxied through an external host, which Vite would
+    // otherwise reject; localhost keeps working out of the box.
+    allowedHosts: [".e2b.app"],
+  },
 });

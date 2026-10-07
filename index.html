@@ -892,6 +892,7 @@
       authForm.addEventListener('submit', event => {
         event.preventDefault();
         const name = userName.value.trim();
+        const email = document.getElementById('userEmail').value.trim();
         const login = authMode === 'login';
         closeAuth();
         authForm.reset();
@@ -902,7 +903,12 @@
         }
         showToast(text.demoRegister(name));
         window.setTimeout(() => {
-          window.location.assign(new URL('dashboard/', window.location.href).href);
+          /* The dashboard greets whoever just registered, so the demo name
+             travels along; it is read once and nothing is sent anywhere. */
+          const target = new URL('dashboard/', window.location.href);
+          if (name) target.searchParams.set('name', name);
+          if (email) target.searchParams.set('email', email);
+          window.location.assign(target.href);
         }, 550);
       });
     })();

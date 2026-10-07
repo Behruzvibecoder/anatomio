@@ -23,15 +23,16 @@ The assembled static site is written to `_site/`.
 ## Demo behavior
 
 - Sign-in and sign-up are demonstration-only. They do not create accounts, authenticate users, or send form data to a server.
-- Completing the demo registration opens the supplied `/dashboard/` interface. Its sample profile, course data, and UI state are client-side demonstrations and do not persist to a backend.
-- The supplied dashboard retains its original **Eduplex** label and sample course content.
+- Completing the demo registration opens the `/dashboard/` interface. Its sample profile, course data, and UI state are client-side demonstrations and do not persist to a backend.
+- The name and email typed into the demo sign-up travel to the dashboard as `?name=…&email=…` so the welcome heading can greet the visitor. Nothing is stored or sent anywhere else.
+- The dashboard carries the **Anatomio** name, colours, owl mark, and typeface of the landing page; its sample course content is unchanged.
 - Anatomy-topic controls provide local UI feedback only; they do not load course content.
 - The landing page, dashboard, and animations are client-side; there is no backend.
 - The landing page language selector supports Russian, English, and Uzbek.
 
-## Imported dashboard source
+## Dashboard source
 
-The supplied React dashboard is stored in `dashboard-app/`. The GitHub Pages workflow builds it and packages it under `/dashboard/`.
+The React dashboard lives in `dashboard-app/`. The GitHub Pages workflow builds it and packages it under `/dashboard/`. Its logo (`src/assets/anatomio-owl.png`), wordmark colours, and typeface (`src/assets/anatomio-sans.woff2`) are derived from the landing-page brand, so the dashboard loads no remote fonts and only needs the files already in the repository.
 
 ## Third-party assets
 
