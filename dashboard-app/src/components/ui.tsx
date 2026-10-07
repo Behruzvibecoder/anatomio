@@ -1,18 +1,19 @@
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
+import owlMark from "../assets/anatomio-owl.png";
 
 /* ------------------------------------------------------------------ */
 /*  shared tint tokens for icon tiles + status pills                    */
 /* ------------------------------------------------------------------ */
 export const tint = {
-  brand: { bg: "#ebf7c2", fg: "#7c9a2e" },
+  brand: { bg: "#d7ffb8", fg: "#3f8f13" },
   lilac: { bg: "#ede6fb", fg: "#7b5ad6" },
   peach: { bg: "#fce5da", fg: "#d4683b" },
   mint: { bg: "#d9f4e3", fg: "#3f9a6a" },
   violet: { bg: "#e0d2f9", fg: "#7b5ad6" },
   rose: { bg: "#ffdada", fg: "#d65a5a" },
   sun: { bg: "#fff1bd", fg: "#b8860b" },
-  ink: { bg: "#1b1d18", fg: "#d8f24f" },
+  ink: { bg: "#1b1d18", fg: "#58cc02" },
 } as const;
 
 export type TintKey = keyof typeof tint;
@@ -43,27 +44,17 @@ export function Section({
 }
 
 /* ------------------------------------------------------------------ */
-/*  the Eduplex mark — hand-drawn paths, works at 16px and in one colour */
+/*  the Anatomio mark — the owl from the landing page logo              */
 /* ------------------------------------------------------------------ */
 export function Logo({ className = "size-9" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 40 40" className={className} aria-hidden="true" focusable="false">
-      <rect width="40" height="40" rx="13" fill="#D8F24F" />
-      <path
-        d="M29.4 15.2c-2.5-3.2-6.3-4.9-10.2-4.3-4.9.8-8 5.1-8 9.6 0 4.5 3.1 8.7 8.2 9.4 3.9.5 7.6-1.3 9.8-4.3"
-        fill="none"
-        stroke="#1B1D18"
-        strokeWidth="3.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M12.4 20.5h13.4"
-        fill="none"
-        stroke="#1B1D18"
-        strokeWidth="3.5"
-        strokeLinecap="round"
-      />
-    </svg>
+    <img
+      src={owlMark}
+      alt=""
+      aria-hidden="true"
+      draggable={false}
+      className={`shrink-0 object-contain ${className}`}
+    />
   );
 }
 

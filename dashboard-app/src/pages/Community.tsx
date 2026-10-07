@@ -5,18 +5,18 @@ import { Avatar, avatarFallback, type AvatarTone } from "../components/kit";
 import { useStore, type Post } from "../store";
 
 const topics = [
-  { tag: "UIDesign", posts: 120 },
-  { tag: "Typography", posts: 102 },
-  { tag: "3DDesign", posts: 84 },
-  { tag: "UXResearch", posts: 66 },
-  { tag: "Photography", posts: 48 },
+  { tag: "Neuroanatomy", posts: 120 },
+  { tag: "Osteology", posts: 102 },
+  { tag: "Cardiology", posts: 84 },
+  { tag: "Histology", posts: 66 },
+  { tag: "Radiology", posts: 48 },
 ];
 
 const members: { name: string; points: number; tone: AvatarTone }[] = [
-  { name: "Micheal Andrew", points: 2400, tone: "peach" },
-  { name: "Natalia Varman", points: 2050, tone: "violet" },
-  { name: "Anna Lee", points: 1700, tone: "mint" },
-  { name: "John Carter", points: 1350, tone: "rose" },
+  { name: "Dr. Micheal Andrew", points: 2400, tone: "peach" },
+  { name: "Dr. Natalia Varman", points: 2050, tone: "violet" },
+  { name: "Dr. Anna Lee", points: 1700, tone: "mint" },
+  { name: "Dr. John Carter", points: 1350, tone: "rose" },
 ];
 
 export default function Community() {
@@ -88,7 +88,7 @@ export default function Community() {
           </label>
           <button
             type="submit"
-            className={`h-11 shrink-0 rounded-full bg-[#cfec3f] px-6 text-[13px] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-deep sm:h-12 sm:px-8 ${
+            className={`h-11 shrink-0 rounded-full bg-brand px-6 text-[13px] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-deep sm:h-12 sm:px-8 ${
               draft.trim() ? "" : "opacity-70"
             }`}
           >
@@ -162,7 +162,7 @@ export default function Community() {
                       on
                         ? "bg-ink text-white"
                         : i === 0
-                          ? "bg-[#cfec3f] hover:bg-brand-deep"
+                          ? "bg-brand hover:bg-brand-deep"
                           : "bg-[#f3f4ee] hover:bg-brand-soft"
                     }`}
                   >

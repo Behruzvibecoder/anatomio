@@ -86,7 +86,7 @@ export default function Messages() {
                   <span className="relative">
                     <Avatar name={c.name} tone={c.tone} className="size-12 text-[13px]" />
                     {c.online && (
-                      <span className="absolute bottom-0 right-0 size-3 rounded-full border-2 border-white bg-[#3fae4a]" />
+                      <span className="absolute bottom-0 right-0 size-3 rounded-full border-2 border-white bg-[#46a302]" />
                     )}
                   </span>
                   <span className="min-w-0 flex-1">
@@ -97,7 +97,7 @@ export default function Messages() {
                     <span className="mt-1 flex items-center justify-between gap-2">
                       <span className="truncate text-[12.5px] text-mute">{c.preview}</span>
                       {c.unread > 0 && (
-                        <span className="grid size-5 shrink-0 place-items-center rounded-full bg-[#cfec3f] text-[10.5px] font-bold">
+                        <span className="grid size-5 shrink-0 place-items-center rounded-full bg-brand text-[10.5px] font-bold">
                           {c.unread}
                         </span>
                       )}
@@ -129,10 +129,10 @@ export default function Messages() {
             <h2 className="text-[16px] font-bold leading-tight">{active.name}</h2>
             <p
               className={`mt-1 flex items-center gap-1.5 text-[12px] font-medium ${
-                active.online ? "text-[#3fae4a]" : "text-mute"
+                active.online ? "text-[#46a302]" : "text-mute"
               }`}
             >
-              {active.online && <span className="size-2 rounded-full bg-[#3fae4a]" />}
+              {active.online && <span className="size-2 rounded-full bg-[#46a302]" />}
               {active.lastSeen}
             </p>
           </div>
@@ -193,7 +193,7 @@ export default function Messages() {
           <button
             type="submit"
             aria-label="Send message"
-            className="grid size-[52px] shrink-0 place-items-center rounded-full bg-[#cfec3f] transition-all duration-300 hover:scale-105 hover:bg-brand-deep hover:shadow-[0_14px_26px_-12px_rgba(168,201,59,0.95)] active:scale-95"
+            className="grid size-[52px] shrink-0 place-items-center rounded-full bg-brand transition-all duration-300 hover:scale-105 hover:bg-brand-deep hover:shadow-[0_14px_26px_-12px_rgba(70,163,2,0.95)] active:scale-95"
           >
             <Send className="size-[18px] -translate-x-px translate-y-px" strokeWidth={2.2} />
           </button>

@@ -10,7 +10,9 @@ import {
   ArrowUpRight,
   type LucideIcon,
 } from "lucide-react";
+import { AnatomyIcon } from "./anatomy-icon";
 import { Logo } from "./ui";
+import { Artwork } from "./art";
 import { hrefFor, routes, type PageKey } from "../router";
 import { useStore } from "../store";
 
@@ -22,8 +24,12 @@ const icons: Record<PageKey, LucideIcon> = {
   notifications: Bell,
   calendars: CalendarDays,
   community: Users,
+  atlas: BookOpen,
   settings: Settings,
 };
+
+// the Atlas is the anatomy shelf, so it wears the skeleton instead of a book
+const atlasIcon = <AnatomyIcon name="skeleton" className="size-[18px]" />;
 
 export default function Sidebar({
   page,
@@ -43,13 +49,22 @@ export default function Sidebar({
       {/* brand */}
       <a href="#/" onClick={onNavigate} className="flex items-center gap-2.5 px-1.5 py-2">
         <Logo className="size-9" />
-        <span className="text-[18px] font-semibold tracking-[-0.02em]">Eduplex</span>
+        <span className="text-[18px] font-semibold tracking-[-0.02em]">Anatomio</span>
       </a>
 
       {/* nav */}
       <nav className="mt-5 space-y-1 pb-6" aria-label="Main">
         {routes.map(({ key, label }) => {
           const Icon = icons[key];
+          const icon =
+            key === "atlas" ? (
+              atlasIcon
+            ) : (
+              <Icon
+                className="size-[18px] transition-transform duration-300 group-hover:scale-110"
+                strokeWidth={2}
+              />
+            );
           const isActive = page === key;
           const badge = key === "notifications" ? unread : 0;
           return (
@@ -60,14 +75,11 @@ export default function Sidebar({
               onClick={onNavigate}
               className={`group flex w-full items-center gap-3 rounded-full px-3.5 py-2.5 text-[12.5px] transition-all duration-300 ${
                 isActive
-                  ? "bg-brand font-semibold text-ink shadow-[0_12px_26px_-14px_rgba(216,242,79,0.9)]"
+                  ? "bg-brand font-semibold text-ink shadow-[0_12px_26px_-14px_rgba(88,204,2,0.9)]"
                   : "font-medium text-white/60 hover:bg-white/10 hover:text-white"
               }`}
             >
-              <Icon
-                className="size-[18px] transition-transform duration-300 group-hover:scale-110"
-                strokeWidth={2}
-              />
+              {icon}
               <span>{label}</span>
               {badge > 0 ? (
                 <span
@@ -85,17 +97,16 @@ export default function Sidebar({
       </nav>
 
       {/* mobile app promo */}
-      <div className="relative mt-auto overflow-hidden rounded-[20px] bg-brand pt-[104px]">
-        <img
-          src="images/app-art.png"
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-2 top-1 h-[112px] w-[calc(100%-16px)] object-contain mix-blend-multiply"
-          onError={(e) => {
-            e.currentTarget.style.display = "none";
-          }}
-        />
-        <div className="relative flex items-end justify-between gap-2 p-3.5">
+      <div className="relative mt-auto overflow-hidden rounded-[20px] bg-brand">
+        {/* The app artwork is a square scene, so it gets a square stage and
+            multiplies into the green just like the source design. */}
+        <div className="relative aspect-square w-full overflow-hidden">
+          <Artwork
+            name="app"
+            className="pointer-events-none absolute inset-0 size-full object-cover mix-blend-multiply"
+          />
+        </div>
+        <div className="relative flex items-end justify-between gap-2 px-3.5 pb-3.5 pt-2">
           <p className="text-[12px] font-semibold leading-[1.35] text-ink">
             Download our
             <br />
@@ -103,7 +114,7 @@ export default function Sidebar({
           </p>
           <button
             type="button"
-            aria-label="Download the Eduplex mobile app"
+            aria-label="Download the Anatomio mobile app"
             onClick={() => toast("The mobile app is coming soon")}
             className="grid size-9 shrink-0 place-items-center rounded-full bg-ink text-brand transition-all duration-300 hover:rotate-45 hover:bg-ink-soft"
           >

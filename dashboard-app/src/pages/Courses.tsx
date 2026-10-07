@@ -1,20 +1,7 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Bookmark,
-  Box,
-  Camera,
-  Code2,
-  Database,
-  Film,
-  Layers,
-  MousePointerClick,
-  Palette,
-  PenLine,
-  SearchX,
-  Star,
-  type LucideIcon,
-} from "lucide-react";
+import { Bookmark, SearchX, Star } from "lucide-react";
+import { AnatomyIcon, type AnatomyIconName } from "../components/anatomy-icon";
 import { Avatar, EmptyState, Select, Tabs, type AvatarTone } from "../components/kit";
 import { useStore } from "../store";
 
@@ -37,21 +24,21 @@ type Course = {
   tutorTone: AvatarTone;
   progress: number;
   color: keyof typeof thumb;
-  icon: LucideIcon;
+  icon: AnatomyIconName;
 };
 
 // The first six are the cards from the design; the last three are finished
 // courses so the "Completed" filter has something real to show.
 const courses: Course[] = [
-  { id: 1, title: "Content Writing", lessons: 12, hours: "6h 30m", rating: 4.8, tutor: "Micheal Andrew", tutorTone: "peach", progress: 60, color: "peach", icon: PenLine },
-  { id: 2, title: "Usability Testing", lessons: 15, hours: "6h 30m", rating: 5.0, tutor: "Micheal Andrew", tutorTone: "peach", progress: 30, color: "mint", icon: MousePointerClick },
-  { id: 3, title: "Photography", lessons: 8, hours: "6h 30m", rating: 4.6, tutor: "Micheal Andrew", tutorTone: "peach", progress: 85, color: "lilac", icon: Camera },
-  { id: 4, title: "3D Design Course", lessons: 24, hours: "6h 30m", rating: 4.9, tutor: "Micheal Andrew", tutorTone: "peach", progress: 45, color: "violet", icon: Box },
-  { id: 5, title: "Development Basics", lessons: 18, hours: "6h 30m", rating: 4.7, tutor: "Micheal Andrew", tutorTone: "peach", progress: 75, color: "rose", icon: Code2 },
-  { id: 6, title: "Data Research", lessons: 10, hours: "6h 30m", rating: 4.5, tutor: "Micheal Andrew", tutorTone: "peach", progress: 20, color: "sun", icon: Database },
-  { id: 7, title: "UI Fundamentals", lessons: 20, hours: "9h 10m", rating: 4.9, tutor: "Natalia Varman", tutorTone: "violet", progress: 100, color: "mint", icon: Layers },
-  { id: 8, title: "Brand Identity", lessons: 16, hours: "7h 45m", rating: 4.7, tutor: "Anna Lee", tutorTone: "mint", progress: 100, color: "lilac", icon: Palette },
-  { id: 9, title: "Motion Design", lessons: 12, hours: "5h 20m", rating: 4.6, tutor: "John Carter", tutorTone: "rose", progress: 100, color: "peach", icon: Film },
+  { id: 1, title: "Skeletal System", lessons: 12, hours: "6h 30m", rating: 4.8, tutor: "Dr. Micheal Andrew", tutorTone: "peach", progress: 60, color: "peach", icon: "skeleton" },
+  { id: 2, title: "Cardiovascular System", lessons: 15, hours: "6h 30m", rating: 5.0, tutor: "Dr. Micheal Andrew", tutorTone: "peach", progress: 30, color: "mint", icon: "heart" },
+  { id: 3, title: "Nervous System", lessons: 8, hours: "6h 30m", rating: 4.6, tutor: "Dr. Micheal Andrew", tutorTone: "peach", progress: 85, color: "lilac", icon: "brain" },
+  { id: 4, title: "Respiratory System", lessons: 24, hours: "6h 30m", rating: 4.9, tutor: "Dr. Micheal Andrew", tutorTone: "peach", progress: 45, color: "violet", icon: "lungs" },
+  { id: 5, title: "Digestive System", lessons: 18, hours: "6h 30m", rating: 4.7, tutor: "Dr. Micheal Andrew", tutorTone: "peach", progress: 75, color: "rose", icon: "stomach" },
+  { id: 6, title: "Urinary System", lessons: 10, hours: "6h 30m", rating: 4.5, tutor: "Dr. Micheal Andrew", tutorTone: "peach", progress: 20, color: "sun", icon: "kidney" },
+  { id: 7, title: "Muscular System", lessons: 20, hours: "9h 10m", rating: 4.9, tutor: "Dr. Natalia Varman", tutorTone: "violet", progress: 100, color: "mint", icon: "muscle" },
+  { id: 8, title: "The Eye & Vision", lessons: 16, hours: "7h 45m", rating: 4.7, tutor: "Dr. Anna Lee", tutorTone: "mint", progress: 100, color: "lilac", icon: "eye" },
+  { id: 9, title: "Blood & Haematology", lessons: 12, hours: "5h 20m", rating: 4.6, tutor: "Dr. John Carter", tutorTone: "rose", progress: 100, color: "peach", icon: "blood-cell" },
 ];
 
 type Tab = "all" | "active" | "completed" | "saved";
@@ -172,7 +159,6 @@ function CourseCard({
   saved: boolean;
   onSave: () => void;
 }) {
-  const Icon = c.icon;
   return (
     <motion.article
       initial={{ opacity: 0, y: 18 }}
@@ -202,7 +188,7 @@ function CourseCard({
         </button>
 
         <span className="grid size-[100px] place-items-center rounded-full bg-white transition-transform duration-500 group-hover:-rotate-3 group-hover:scale-105">
-          <Icon className="size-9 text-ink" strokeWidth={1.7} />
+          <AnatomyIcon name={c.icon} className="size-9 text-ink" />
         </span>
       </div>
 
@@ -231,7 +217,7 @@ function CourseCard({
               whileInView={{ width: `${c.progress}%` }}
               viewport={{ once: true }}
               transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
-              className="h-full rounded-full bg-[#cfec3f]"
+              className="h-full rounded-full bg-brand"
             />
           </div>
           <span className="w-10 text-right text-[12.5px] font-bold tabular-nums">{c.progress}%</span>

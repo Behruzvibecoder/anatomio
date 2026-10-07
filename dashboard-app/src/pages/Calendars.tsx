@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect, type FormEvent } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, X } from "lucide-react";
+import { AnatomyIcon } from "../components/anatomy-icon";
 import { useStore, type CalEvent, type EventTone } from "../store";
 
 /* ------------------------------------------------------------------ */
@@ -31,7 +32,7 @@ const TODAY = new Date(2023, 7, 16);
 const TODAY_KEY = keyOf(TODAY);
 
 const toneStyle: Record<EventTone, { bg: string; bar: string }> = {
-  lime: { bg: "#cdeb43", bar: "#cdeb43" },
+  lime: { bg: "#a5ed6e", bar: "#a5ed6e" },
   lilac: { bg: "#e4dcfb", bar: "#cdbdf6" },
   peach: { bg: "#ffe0d0", bar: "#ffc4a8" },
   mint: { bg: "#d6f3e2", bar: "#a9e1c2" },
@@ -154,7 +155,7 @@ export default function Calendars() {
                 transition={{ duration: 0.3, delay: Math.min(idx, 20) * 0.012 }}
                 aria-label={`${fmtDate(k)}${list.length ? `, ${list.length} event${list.length > 1 ? "s" : ""}` : ""}. Add an event`}
                 className={`group relative flex min-h-[62px] flex-col rounded-[14px] p-1.5 text-left transition-colors duration-300 sm:min-h-[96px] sm:rounded-[16px] sm:p-2 lg:min-h-[116px] ${
-                  isToday ? "bg-[#f6fbdd] ring-1 ring-brand-deep/40" : "bg-fog hover:bg-[#eef0e7]"
+                  isToday ? "bg-sprout ring-1 ring-brand-deep/40" : "bg-fog hover:bg-[#eef0e7]"
                 }`}
               >
                 <span className="flex items-center justify-between px-1">
@@ -173,10 +174,11 @@ export default function Calendars() {
                   {shown.map((e) => (
                     <span
                       key={e.id}
-                      className="block truncate rounded-[8px] px-2 py-[5px] text-[11px] font-semibold leading-none"
+                      className="flex items-center gap-1.5 truncate rounded-[8px] px-2 py-[5px] text-[11px] font-semibold leading-none"
                       style={{ backgroundColor: toneStyle[e.tone].bg }}
                     >
-                      {e.short ?? e.title}
+                      {e.icon ? <AnatomyIcon name={e.icon} className="size-[11px]" /> : null}
+                      <span className="truncate">{e.short ?? e.title}</span>
                     </span>
                   ))}
                   {more > 0 && <span className="px-1 text-[10.5px] font-medium text-mute">+{more} more</span>}
@@ -222,7 +224,10 @@ export default function Calendars() {
               >
                 <span className="w-1.5 shrink-0" style={{ backgroundColor: toneStyle[e.tone].bar }} />
                 <div className="min-w-0 p-3.5 pl-3.5">
-                  <p className="truncate text-[14.5px] font-bold leading-tight">{e.title}</p>
+                  <p className="flex items-center gap-2 text-[14.5px] font-bold leading-tight">
+                    {e.icon ? <AnatomyIcon name={e.icon} className="size-[15px] shrink-0" /> : null}
+                    <span className="truncate">{e.title}</span>
+                  </p>
                   <p className="mt-1.5 text-[12px] text-mute">
                     {fmtDate(e.date)} · {fmtTime(e.time)}
                   </p>
@@ -241,7 +246,7 @@ export default function Calendars() {
         <button
           type="button"
           onClick={() => setModalDate(TODAY_KEY)}
-          className="mt-5 flex h-11 w-full items-center justify-center gap-1.5 rounded-full bg-[#cfec3f] text-[13px] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-deep hover:shadow-[0_16px_28px_-14px_rgba(168,201,59,0.95)]"
+          className="mt-5 flex h-11 w-full items-center justify-center gap-1.5 rounded-full bg-brand text-[13px] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-deep hover:shadow-[0_16px_28px_-14px_rgba(70,163,2,0.95)]"
         >
           <Plus className="size-4" strokeWidth={2.6} />
           Add Event

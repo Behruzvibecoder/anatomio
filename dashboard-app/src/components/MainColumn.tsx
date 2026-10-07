@@ -1,20 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  PenLine,
-  MousePointerClick,
-  Camera,
-  Star,
-  ChevronDown,
-  ChevronRight,
-  Shapes,
-  Type as TypeIcon,
-  Palette,
-  Layers,
-  Box,
-  Code2,
-  Plus,
-} from "lucide-react";
+import { Star, ChevronDown, ChevronRight, Plus } from "lucide-react";
+import { AnatomyIcon } from "./anatomy-icon";
 import { Heading, Ring, Section, Tile } from "./ui";
 
 /* ------------------------------------------------------------------ */
@@ -22,28 +9,28 @@ import { Heading, Ring, Section, Tile } from "./ui";
 /* ------------------------------------------------------------------ */
 const courses = [
   {
-    title: "Content Writing",
+    title: "Skeletal System",
     lessons: "12 Lessons",
     rate: "4.6",
-    type: "Data Research",
+    type: "Osteology",
     tone: "peach" as const,
-    icon: PenLine,
+    icon: "skeleton" as const,
   },
   {
-    title: "Usability Testing",
+    title: "Cardiovascular System",
     lessons: "10 Lessons",
     rate: "5.0",
-    type: "UX/UI Design",
+    type: "Angiology",
     tone: "brand" as const,
-    icon: MousePointerClick,
+    icon: "heart" as const,
   },
   {
-    title: "Photography",
+    title: "Nervous System",
     lessons: "8 Lessons",
     rate: "4.6",
-    type: "Art and Design",
+    type: "Neurology",
     tone: "lilac" as const,
-    icon: Camera,
+    icon: "brain" as const,
   },
 ];
 
@@ -66,10 +53,10 @@ const MAX_H = 11;
 /*  Daily schedule                                                     */
 /* ------------------------------------------------------------------ */
 const schedule = [
-  { title: "Design System", meta: "Lesson • Class", tone: "brand" as const, icon: Shapes },
-  { title: "Typography", meta: "Group • Test", tone: "peach" as const, icon: TypeIcon },
-  { title: "Color Style", meta: "Group • Test", tone: "brand" as const, icon: Palette },
-  { title: "Visual Design", meta: "Lesson • Test", tone: "lilac" as const, icon: Layers },
+  { title: "Skeletal System", meta: "Lesson • Class", tone: "brand" as const, icon: "skeleton" as const },
+  { title: "Neuroanatomy", meta: "Group • Test", tone: "peach" as const, icon: "brain" as const },
+  { title: "Cardiovascular System", meta: "Group • Test", tone: "brand" as const, icon: "heart" as const },
+  { title: "Respiratory System", meta: "Lesson • Test", tone: "lilac" as const, icon: "lungs" as const },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -77,20 +64,20 @@ const schedule = [
 /* ------------------------------------------------------------------ */
 const taking = [
   {
-    title: "3D Design Course",
-    tutor: "with Michael Andrews",
+    title: "Advanced Neuroanatomy",
+    tutor: "with Dr. Michael Andrews",
     remaining: "8h 45 min",
     progress: 45,
     tone: "lilac" as const,
-    icon: Box,
+    icon: "brain-side" as const,
   },
   {
-    title: "Development Basics",
-    tutor: "with Natalia Verner",
+    title: "Regional Anatomy: Thorax",
+    tutor: "with Dr. Natalia Verner",
     remaining: "10h 12 min",
     progress: 75,
     tone: "peach" as const,
-    icon: Code2,
+    icon: "body-lateral" as const,
   },
 ];
 
@@ -137,7 +124,7 @@ export default function MainColumn() {
             >
               <div className="flex items-start gap-3">
                 <Tile tone={c.tone} className="size-[42px] rounded-[13px]">
-                  <c.icon className="size-[19px]" strokeWidth={2} />
+                  <AnatomyIcon name={c.icon} className="size-[19px]" />
                 </Tile>
                 <div className="min-w-0">
                   <h3 className="truncate text-[13px] font-semibold leading-tight">{c.title}</h3>
@@ -240,7 +227,7 @@ export default function MainColumn() {
                         className="w-[9px] origin-bottom rounded-full transition-colors duration-300"
                         style={{
                           height: h,
-                          backgroundColor: isActive ? "#d8f24f" : "#1b1d18",
+                          backgroundColor: isActive ? "#58cc02" : "#1b1d18",
                         }}
                       />
                     </div>
@@ -275,7 +262,7 @@ export default function MainColumn() {
                   className="group flex items-center gap-3 rounded-[15px] p-2 transition-colors duration-300 hover:bg-paper"
                 >
                   <Tile tone={s.tone} className="size-[38px] rounded-[12px]">
-                    <s.icon className="size-[17px]" strokeWidth={2} />
+                    <AnatomyIcon name={s.icon} className="size-[17px]" />
                   </Tile>
                   <div className="min-w-0">
                     <p className="truncate text-[12px] font-semibold leading-tight">{s.title}</p>
@@ -318,7 +305,7 @@ export default function MainColumn() {
               className="group flex items-center gap-3.5 rounded-[18px] border border-ink/[0.07] bg-white p-3.5 transition-[border-color,box-shadow] duration-300 hover:border-brand-deep/30 hover:shadow-[0_26px_50px_-28px_rgba(27,29,24,0.4)]"
             >
               <Tile tone={c.tone} className="size-[46px] rounded-[15px]">
-                <c.icon className="size-5" strokeWidth={2} />
+                <AnatomyIcon name={c.icon} className="size-5" />
               </Tile>
 
               <div className="min-w-0">

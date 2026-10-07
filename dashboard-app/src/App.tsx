@@ -13,6 +13,7 @@ import Messages from "./pages/Messages";
 import Notifications from "./pages/Notifications";
 import Calendars from "./pages/Calendars";
 import Community from "./pages/Community";
+import Atlas from "./pages/Atlas";
 import Settings from "./pages/Settings";
 
 function View({ page }: { page: PageKey }) {
@@ -29,6 +30,8 @@ function View({ page }: { page: PageKey }) {
       return <Calendars />;
     case "community":
       return <Community />;
+    case "atlas":
+      return <Atlas />;
     case "settings":
       return <Settings />;
     default:
@@ -46,7 +49,7 @@ function Shell() {
   const first = profile.name.trim().split(" ")[0] || "there";
 
   useEffect(() => {
-    document.title = page === "dashboard" ? "Eduplex — Dashboard" : `${label} — Eduplex`;
+    document.title = page === "dashboard" ? "Anatomio — Dashboard" : `${label} — Anatomio`;
   }, [page, label]);
 
   useEffect(() => {
@@ -132,7 +135,7 @@ function Shell() {
               <Menu className="size-5" />
             </button>
 
-            <a href="#/" className="shrink-0 lg:hidden" aria-label="Eduplex home">
+            <a href="#/" className="shrink-0 lg:hidden" aria-label="Anatomio home">
               <Logo className="size-9" />
             </a>
 

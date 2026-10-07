@@ -1,34 +1,36 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Plus, Sigma, LineChart, Database } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import { AnatomyIcon } from "./anatomy-icon";
 import { Heading, Logo, Section, Tile } from "./ui";
+import { Artwork } from "./art";
 
 /* ------------------------------------------------------------------ */
 /*  Assignments                                                        */
 /* ------------------------------------------------------------------ */
 const assignments = [
   {
-    title: "Methods of data",
+    title: "Axial skeleton quiz",
     due: "12 July, 10:30 AM",
     status: "In progress",
     tone: "brand" as const,
-    icon: Sigma,
+    icon: "bone" as const,
     pill: { bg: "#ede6fb", fg: "#7b5ad6" },
   },
   {
-    title: "Market Research",
+    title: "Cardiac cycle report",
     due: "24 June, 11:00 AM",
     status: "Completed",
     tone: "lilac" as const,
-    icon: LineChart,
-    pill: { bg: "#ebf7c2", fg: "#7c9a2e" },
+    icon: "heart" as const,
+    pill: { bg: "#d7ffb8", fg: "#3f8f13" },
   },
   {
-    title: "Data Collection",
+    title: "Lung volumes test",
     due: "12 May, 11:00 AM",
     status: "Upcoming",
     tone: "peach" as const,
-    icon: Database,
+    icon: "lungs" as const,
     pill: { bg: "#fce5da", fg: "#d4683b" },
   },
 ];
@@ -74,25 +76,16 @@ export default function RightRail() {
     <div className="space-y-6">
       {/* ---------------- Go Premium ---------------- */}
       <Section className="relative overflow-hidden rounded-[22px] bg-ink p-5 text-white">
-        <img
-          src="images/premium-art.png"
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-3 top-0 h-[168px] w-[68%] object-contain opacity-90 mix-blend-screen"
-          style={{
-            maskImage: "linear-gradient(to left, #000 58%, transparent 100%)",
-            WebkitMaskImage: "linear-gradient(to left, #000 58%, transparent 100%)",
-          }}
-          onError={(e) => {
-            e.currentTarget.style.display = "none";
-          }}
+        <Artwork
+          name="premium"
+          className="pointer-events-none absolute inset-0 size-full object-cover object-right"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/55 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-transparent" />
 
         <div className="relative">
           <div className="flex items-center gap-2">
             <Logo className="size-7" />
-            <span className="text-[13px] font-semibold tracking-[-0.02em]">Eduplex</span>
+            <span className="text-[13px] font-semibold tracking-[-0.02em]">Anatomio</span>
           </div>
 
           <h2 className="mt-7 text-[19px] font-semibold leading-[1.15] tracking-[-0.02em]">
@@ -104,7 +97,7 @@ export default function RightRail() {
 
           <button
             type="button"
-            className="mt-5 rounded-full bg-brand px-5 py-2.5 text-[11px] font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_18px_34px_-16px_rgba(216,242,79,0.65)]"
+            className="mt-5 rounded-full bg-brand px-5 py-2.5 text-[11px] font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_18px_34px_-16px_rgba(88,204,2,0.65)]"
           >
             Get Access
           </button>
@@ -194,7 +187,7 @@ export default function RightRail() {
                 className="group flex items-center gap-3 rounded-[15px] p-2.5 transition-colors duration-300 hover:bg-paper"
               >
                 <Tile tone={a.tone} className="size-[38px] rounded-[12px]">
-                  <a.icon className="size-[17px]" strokeWidth={2} />
+                  <AnatomyIcon name={a.icon} className="size-[17px]" />
                 </Tile>
                 <div className="min-w-0">
                   <p className="truncate text-[12px] font-semibold leading-tight">{a.title}</p>

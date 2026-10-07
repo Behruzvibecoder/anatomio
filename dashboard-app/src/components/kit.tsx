@@ -11,13 +11,13 @@ export const avatarTones = {
   mint: "#9adcc0",
   rose: "#ffd0d0",
   blue: "#bcd5ff",
-  lime: "#cdeb43",
+  lime: "#a5ed6e",
 } as const;
 
 export type AvatarTone = keyof typeof avatarTones;
 
 export const avatarFallback =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' fill='%23d8f24f'/%3E%3Ccircle cx='22' cy='17.5' r='7.5' fill='%231b1d18'/%3E%3Cpath d='M22 27c-7.2 0-13 4.6-13 10.3V44h26v-6.7C35 31.6 29.2 27 22 27z' fill='%231b1d18'/%3E%3C/svg%3E";
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' fill='%2358cc02'/%3E%3Ccircle cx='22' cy='17.5' r='7.5' fill='%231b1d18'/%3E%3Cpath d='M22 27c-7.2 0-13 4.6-13 10.3V44h26v-6.7C35 31.6 29.2 27 22 27z' fill='%231b1d18'/%3E%3C/svg%3E";
 
 export function Avatar({
   name,
