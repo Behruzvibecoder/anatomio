@@ -8,6 +8,7 @@ export type PageKey =
   | "notifications"
   | "calendars"
   | "community"
+  | "atlas"
   | "settings";
 
 export const routes: { key: PageKey; label: string; path: string }[] = [
@@ -18,6 +19,7 @@ export const routes: { key: PageKey; label: string; path: string }[] = [
   { key: "notifications", label: "Notifications", path: "notifications" },
   { key: "calendars", label: "Calendars", path: "calendars" },
   { key: "community", label: "Community", path: "community" },
+  { key: "atlas", label: "Anatomy Atlas", path: "atlas" },
   { key: "settings", label: "Settings", path: "settings" },
 ];
 

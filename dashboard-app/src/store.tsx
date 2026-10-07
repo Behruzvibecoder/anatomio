@@ -10,6 +10,7 @@ import {
   type SetStateAction,
 } from "react";
 import type { AvatarTone } from "./components/kit";
+import type { AnatomyIconName } from "./components/anatomy-icon";
 
 /* ------------------------------------------------------------------ */
 /*  types                                                              */
@@ -65,6 +66,8 @@ export type CalEvent = {
   time: string; // HH:MM
   tone: EventTone;
   label: string;
+  /** draws the subject on the calendar chips and the event list */
+  icon?: AnatomyIconName;
 };
 
 export type Profile = {
@@ -195,13 +198,13 @@ const seedPosts: Post[] = [
 ];
 
 const seedEvents: CalEvent[] = [
-  { id: 1, title: "Skeletal System", date: "2023-08-03", time: "10:00", tone: "peach", label: "Lecture" },
-  { id: 2, title: "Neuroanatomy", date: "2023-08-08", time: "11:30", tone: "lilac", label: "Workshop" },
-  { id: 3, title: "Anatomy Quiz", date: "2023-08-10", time: "14:00", tone: "mint", label: "Quiz" },
-  { id: 4, title: "Cardiovascular System", date: "2023-08-16", time: "09:00", tone: "lime", label: "Lecture" },
-  { id: 5, title: "Histology", date: "2023-08-17", time: "11:00", tone: "lilac", label: "Workshop" },
+  { id: 1, title: "Skeletal System", date: "2023-08-03", time: "10:00", tone: "peach", label: "Lecture", icon: "skeleton" },
+  { id: 2, title: "Neuroanatomy", date: "2023-08-08", time: "11:30", tone: "lilac", label: "Workshop", icon: "brain" },
+  { id: 3, title: "Anatomy Quiz", date: "2023-08-10", time: "14:00", tone: "mint", label: "Quiz", icon: "tooth" },
+  { id: 4, title: "Cardiovascular System", date: "2023-08-16", time: "09:00", tone: "lime", label: "Lecture", icon: "heart" },
+  { id: 5, title: "Histology", date: "2023-08-17", time: "11:00", tone: "lilac", label: "Workshop", icon: "blood-cell" },
   { id: 6, title: "Assignment due", short: "Assignment", date: "2023-08-22", time: "10:30", tone: "peach", label: "Deadline" },
-  { id: 7, title: "Live Class", date: "2023-08-24", time: "14:30", tone: "mint", label: "Live" },
+  { id: 7, title: "Live Class", date: "2023-08-24", time: "14:30", tone: "mint", label: "Live", icon: "lungs" },
   { id: 8, title: "Final Exam", short: "Exam", date: "2023-08-29", time: "09:00", tone: "peach", label: "Exam" },
 ];
 

@@ -13,6 +13,7 @@ import Messages from "./pages/Messages";
 import Notifications from "./pages/Notifications";
 import Calendars from "./pages/Calendars";
 import Community from "./pages/Community";
+import Atlas from "./pages/Atlas";
 import Settings from "./pages/Settings";
 
 function View({ page }: { page: PageKey }) {
@@ -29,6 +30,8 @@ function View({ page }: { page: PageKey }) {
       return <Calendars />;
     case "community":
       return <Community />;
+    case "atlas":
+      return <Atlas />;
     case "settings":
       return <Settings />;
     default:

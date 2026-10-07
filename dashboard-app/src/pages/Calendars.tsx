@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect, type FormEvent } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, X } from "lucide-react";
+import { AnatomyIcon } from "../components/anatomy-icon";
 import { useStore, type CalEvent, type EventTone } from "../store";
 
 /* ------------------------------------------------------------------ */
@@ -173,10 +174,11 @@ export default function Calendars() {
                   {shown.map((e) => (
                     <span
                       key={e.id}
-                      className="block truncate rounded-[8px] px-2 py-[5px] text-[11px] font-semibold leading-none"
+                      className="flex items-center gap-1.5 truncate rounded-[8px] px-2 py-[5px] text-[11px] font-semibold leading-none"
                       style={{ backgroundColor: toneStyle[e.tone].bg }}
                     >
-                      {e.short ?? e.title}
+                      {e.icon ? <AnatomyIcon name={e.icon} className="size-[11px]" /> : null}
+                      <span className="truncate">{e.short ?? e.title}</span>
                     </span>
                   ))}
                   {more > 0 && <span className="px-1 text-[10.5px] font-medium text-mute">+{more} more</span>}
@@ -222,7 +224,10 @@ export default function Calendars() {
               >
                 <span className="w-1.5 shrink-0" style={{ backgroundColor: toneStyle[e.tone].bar }} />
                 <div className="min-w-0 p-3.5 pl-3.5">
-                  <p className="truncate text-[14.5px] font-bold leading-tight">{e.title}</p>
+                  <p className="flex items-center gap-2 text-[14.5px] font-bold leading-tight">
+                    {e.icon ? <AnatomyIcon name={e.icon} className="size-[15px] shrink-0" /> : null}
+                    <span className="truncate">{e.title}</span>
+                  </p>
                   <p className="mt-1.5 text-[12px] text-mute">
                     {fmtDate(e.date)} · {fmtTime(e.time)}
                   </p>

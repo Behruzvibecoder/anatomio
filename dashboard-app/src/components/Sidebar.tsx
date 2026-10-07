@@ -10,6 +10,7 @@ import {
   ArrowUpRight,
   type LucideIcon,
 } from "lucide-react";
+import { AnatomyIcon } from "./anatomy-icon";
 import { Logo } from "./ui";
 import { Artwork } from "./art";
 import { hrefFor, routes, type PageKey } from "../router";
@@ -23,8 +24,12 @@ const icons: Record<PageKey, LucideIcon> = {
   notifications: Bell,
   calendars: CalendarDays,
   community: Users,
+  atlas: BookOpen,
   settings: Settings,
 };
+
+// the Atlas is the anatomy shelf, so it wears the skeleton instead of a book
+const atlasIcon = <AnatomyIcon name="skeleton" className="size-[18px]" />;
 
 export default function Sidebar({
   page,
@@ -51,6 +56,15 @@ export default function Sidebar({
       <nav className="mt-5 space-y-1 pb-6" aria-label="Main">
         {routes.map(({ key, label }) => {
           const Icon = icons[key];
+          const icon =
+            key === "atlas" ? (
+              atlasIcon
+            ) : (
+              <Icon
+                className="size-[18px] transition-transform duration-300 group-hover:scale-110"
+                strokeWidth={2}
+              />
+            );
           const isActive = page === key;
           const badge = key === "notifications" ? unread : 0;
           return (
@@ -65,10 +79,7 @@ export default function Sidebar({
                   : "font-medium text-white/60 hover:bg-white/10 hover:text-white"
               }`}
             >
-              <Icon
-                className="size-[18px] transition-transform duration-300 group-hover:scale-110"
-                strokeWidth={2}
-              />
+              {icon}
               <span>{label}</span>
               {badge > 0 ? (
                 <span
