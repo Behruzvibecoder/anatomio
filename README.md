@@ -34,6 +34,17 @@ The assembled static site is written to `_site/`.
 
 The React dashboard lives in `dashboard-app/`. The GitHub Pages workflow builds it and packages it under `/dashboard/`. Its logo (`src/assets/anatomio-owl.png`), wordmark colours, and typeface (`src/assets/anatomio-sans.woff2`) are derived from the landing-page brand, so the dashboard loads no remote fonts and only needs the files already in the repository.
 
+### Promo artwork
+
+The dashboard was laid out around two illustrations that are not in the repository. Drop the real files in at these paths and they take over automatically — no code change and no layout edit:
+
+| File | Card | What fits best |
+| --- | --- | --- |
+| `dashboard-app/public/images/app-art.png` | sidebar *Download our mobile app* tile | square (1:1), light background: the tile multiplies it into the brand green |
+| `dashboard-app/public/images/premium-art.png` | *Go Premium* card | wide (about 2:1), dark background, subject on the right: the card covers its full area and blends it in screen mode |
+
+Until those files exist, bundled SVG stand-ins keep the layout intact.
+
 ## Third-party assets
 
 Some landing-page illustrations, animations, type assets, and assets within the supplied dashboard belong to their respective rights holders. Review applicable licenses before reusing or publishing them.

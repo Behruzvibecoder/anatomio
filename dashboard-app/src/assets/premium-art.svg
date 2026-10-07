@@ -1,36 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 168" fill="none" role="presentation">
-  <!-- decorative anatomy line art for the dark promo card (blends in screen mode) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" fill="none" role="presentation">
+  <!-- Stand-in for src/assets/premium-art.png: a wide (2:1) composition whose
+       subject sits on the right, so it fills the dark card the same way the
+       real illustration does (cover + object-right + screen blend). -->
   <g stroke="#ffffff" stroke-linecap="round">
-    <circle cx="104" cy="78" r="52" stroke-width="1.2" opacity="0.22" />
-    <circle cx="104" cy="78" r="66" stroke-width="1" opacity="0.12" />
+    <!-- quiet scatter on the left, mostly hidden by the card's text mask -->
+    <g stroke-width="1.4" opacity="0.18">
+      <path d="M52 60v14M45 67h14" />
+      <circle cx="112" cy="150" r="7" />
+      <path d="M84 92h20M84 104h20M84 116h20" />
+    </g>
+
+    <!-- the composition, right of centre -->
+    <circle cx="298" cy="100" r="62" stroke-width="1.4" opacity="0.22" />
+    <circle cx="298" cy="100" r="78" stroke-width="1.1" opacity="0.12" />
 
     <!-- heart -->
     <path
-      d="M104 112c-14-9.5-24-19.6-24-30.6 0-8 6-14.4 13.6-14.4 4.6 0 8.4 2.4 10.4 5.6 2-3.2 5.8-5.6 10.4-5.6C122 67 128 73.4 128 81.4c0 11-10 21.1-24 30.6Z"
-      stroke-width="2.6"
-      opacity="0.92"
+      d="M298 140c-17-11.5-29-23.6-29-36.8 0-9.6 7.2-17.2 16.3-17.2 5.5 0 10 2.9 12.7 6.7 2.7-3.8 7.2-6.7 12.7-6.7 9.1 0 16.3 7.6 16.3 17.2 0 13.2-12 25.3-29 36.8Z"
+      stroke-width="3"
+      opacity="0.95"
     />
-    <path d="M104 82c-3.6 0-6.6 2.8-6.6 6.3 0 4.6 4 8.6 9.2 12.6" stroke-width="1.5" opacity="0.5" />
+    <path d="M298 100c-4.4 0-8 3.4-8 7.6 0 5.6 4.8 10.4 11.2 15.2" stroke-width="1.7" opacity="0.5" />
 
     <!-- vessels -->
-    <path d="M104 67c0-9 3-15 9.5-20.5" stroke-width="2.2" opacity="0.85" />
-    <path d="M113.5 46.5c4.6-2 9-1.8 12.4 1.2" stroke-width="2" opacity="0.7" />
-    <path d="M104 67c-1.4-8.6-5.4-13.6-12-17.4" stroke-width="2" opacity="0.7" />
-    <path d="M92 49.6c-4.4-3.4-9.2-4.4-13.4-2.2" stroke-width="1.8" opacity="0.55" />
+    <path d="M298 81c0-11 3.6-18 11.5-24.6" stroke-width="2.4" opacity="0.85" />
+    <path d="M309.5 56.4c5.5-2.4 10.8-1.8 14.8 2" stroke-width="2.2" opacity="0.7" />
+    <path d="M298 81c-1.6-10.4-6.6-16.4-14.4-21" stroke-width="2.2" opacity="0.7" />
+    <path d="M283.6 60c-5.2-4-11-5.2-16-2.6" stroke-width="1.9" opacity="0.55" />
 
-    <!-- vertebrae column -->
-    <g stroke-width="1.6" opacity="0.5">
-      <path d="M34 44h18M34 56h18M34 68h18M34 80h18M34 92h18" />
-      <path d="M34 44v48" opacity="0.5" />
-      <path d="M52 44v48" opacity="0.5" />
+    <!-- vertebrae column, tucked at the inner edge -->
+    <g stroke-width="1.7" opacity="0.45">
+      <path d="M214 62h22M214 76h22M214 90h22M214 104h22M214 118h22" />
+      <path d="M214 62v56" opacity="0.5" />
+      <path d="M236 62v56" opacity="0.5" />
     </g>
 
-    <!-- scatter of cells -->
-    <g stroke-width="1.6" opacity="0.6">
-      <path d="M150 34v10M145 39h10" />
-      <path d="M22 118v8M18 122h8" />
-      <circle cx="156" cy="126" r="4.5" />
-      <circle cx="66" cy="26" r="3.5" />
+    <!-- cells -->
+    <g stroke-width="1.7" opacity="0.6">
+      <path d="M372 44v12M366 50h12" />
+      <circle cx="380" cy="152" r="5.5" />
+      <circle cx="248" cy="34" r="4.5" />
+      <path d="M196 152v9M191.5 156.5h9" />
     </g>
   </g>
 </svg>

@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, Sigma, LineChart, Database } from "lucide-react";
 import { Heading, Logo, Section, Tile } from "./ui";
-import premiumArt from "../assets/premium-art.svg";
+import { Artwork } from "./art";
 
 /* ------------------------------------------------------------------ */
 /*  Assignments                                                        */
@@ -75,18 +75,9 @@ export default function RightRail() {
     <div className="space-y-6">
       {/* ---------------- Go Premium ---------------- */}
       <Section className="relative overflow-hidden rounded-[22px] bg-ink p-5 text-white">
-        <img
-          src={premiumArt}
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-3 top-0 h-[168px] w-[68%] object-contain opacity-90 mix-blend-screen"
-          style={{
-            maskImage: "linear-gradient(to left, #000 58%, transparent 100%)",
-            WebkitMaskImage: "linear-gradient(to left, #000 58%, transparent 100%)",
-          }}
-          onError={(e) => {
-            e.currentTarget.style.display = "none";
-          }}
+        <Artwork
+          name="premium"
+          className="pointer-events-none absolute inset-0 size-full object-cover object-right opacity-90 mix-blend-screen"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/55 to-transparent" />
 

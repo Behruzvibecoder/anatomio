@@ -11,7 +11,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Logo } from "./ui";
-import appArt from "../assets/app-art.svg";
+import { Artwork } from "./art";
 import { hrefFor, routes, type PageKey } from "../router";
 import { useStore } from "../store";
 
@@ -86,17 +86,16 @@ export default function Sidebar({
       </nav>
 
       {/* mobile app promo */}
-      <div className="relative mt-auto overflow-hidden rounded-[20px] bg-brand pt-[104px]">
-        <img
-          src={appArt}
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-2 top-1 h-[112px] w-[calc(100%-16px)] object-contain"
-          onError={(e) => {
-            e.currentTarget.style.display = "none";
-          }}
-        />
-        <div className="relative flex items-end justify-between gap-2 p-3.5">
+      <div className="relative mt-auto overflow-hidden rounded-[20px] bg-brand">
+        {/* The app artwork is a square scene, so it gets a square stage and
+            multiplies into the green just like the source design. */}
+        <div className="relative aspect-square w-full overflow-hidden">
+          <Artwork
+            name="app"
+            className="pointer-events-none absolute inset-0 size-full object-cover mix-blend-multiply"
+          />
+        </div>
+        <div className="relative flex items-end justify-between gap-2 px-3.5 pb-3.5 pt-2">
           <p className="text-[12px] font-semibold leading-[1.35] text-ink">
             Download our
             <br />
